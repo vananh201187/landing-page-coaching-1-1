@@ -7,19 +7,19 @@
   <meta name="description" content="Coaching 1-1 cùng Nguyễn Thị Vân Anh - EMCC Practitioner Coach, Trainer, Mentor. Đồng hành quay về bình an nội tại, làm chủ cảm xúc và lãnh đạo chính mình.">
   <style>
     :root {
-      --moss: #20352d;
-      --moss-2: #2f4a3e;
-      --pine: #10231d;
-      --stone: #ece6d8;
-      --paper: #faf7ef;
-      --sand: #d7c8ad;
-      --clay: #a87358;
-      --brass: #b79a67;
-      --ink: #1c1b18;
-      --muted: #6c675d;
-      --line: rgba(32, 53, 45, 0.16);
-      --white: #fffdf8;
-      --shadow: 0 24px 70px rgba(17, 31, 26, 0.18);
+      --moss: #7a5a22;
+      --moss-2: #a67c35;
+      --pine: #3b2a14;
+      --stone: #fff1c7;
+      --paper: #fff8e6;
+      --sand: #f2d79a;
+      --clay: #9f6530;
+      --brass: #d4ae5c;
+      --ink: #2b2114;
+      --muted: #75684f;
+      --line: rgba(122, 90, 34, 0.18);
+      --white: #fffdf3;
+      --shadow: 0 24px 70px rgba(91, 65, 25, 0.16);
     }
 
     * {
@@ -44,9 +44,9 @@
       inset: 0;
       pointer-events: none;
       background-image:
-        radial-gradient(circle at 20% 10%, rgba(183, 154, 103, 0.10), transparent 28%),
-        linear-gradient(90deg, rgba(32, 53, 45, 0.04) 1px, transparent 1px),
-        linear-gradient(rgba(32, 53, 45, 0.035) 1px, transparent 1px);
+        radial-gradient(circle at 20% 10%, rgba(212, 174, 92, 0.16), transparent 28%),
+        linear-gradient(90deg, rgba(122, 90, 34, 0.045) 1px, transparent 1px),
+        linear-gradient(rgba(122, 90, 34, 0.04) 1px, transparent 1px);
       background-size: auto, 72px 72px, 72px 72px;
       opacity: 0.75;
       z-index: -1;
@@ -68,10 +68,10 @@
       left: 0;
       right: 0;
       z-index: 20;
-      border-bottom: 1px solid rgba(255, 253, 248, 0.14);
-      background: rgba(16, 35, 29, 0.74);
+      border-bottom: 1px solid rgba(122, 90, 34, 0.16);
+      background: rgba(255, 245, 211, 0.86);
       backdrop-filter: blur(16px);
-      color: var(--white);
+      color: var(--ink);
     }
 
     .nav-inner {
@@ -96,11 +96,11 @@
     .brand-mark {
       width: 34px;
       height: 34px;
-      border: 1px solid rgba(255, 253, 248, 0.42);
+      border: 1px solid rgba(122, 90, 34, 0.34);
       display: grid;
       place-items: center;
       border-radius: 50%;
-      color: var(--sand);
+      color: var(--moss);
       font-size: 16px;
     }
 
@@ -110,11 +110,11 @@
       gap: 22px;
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 14px;
-      color: rgba(255, 253, 248, 0.82);
+      color: rgba(43, 33, 20, 0.76);
     }
 
     .nav-links a:hover {
-      color: var(--white);
+      color: var(--moss);
     }
 
     .btn {
@@ -139,8 +139,8 @@
 
     .btn-primary {
       background: var(--brass);
-      color: var(--pine);
-      border-color: rgba(255, 253, 248, 0.12);
+      color: var(--ink);
+      border-color: rgba(122, 90, 34, 0.10);
     }
 
     .btn-primary:hover {
@@ -148,9 +148,9 @@
     }
 
     .btn-ghost {
-      color: var(--white);
-      border-color: rgba(255, 253, 248, 0.38);
-      background: rgba(255, 253, 248, 0.06);
+      color: var(--ink);
+      border-color: rgba(122, 90, 34, 0.32);
+      background: rgba(255, 253, 248, 0.42);
     }
 
     .btn-dark {
@@ -162,14 +162,14 @@
       min-height: 94vh;
       display: grid;
       align-items: end;
-      color: var(--white);
+      color: var(--ink);
       background-image:
-        linear-gradient(90deg, rgba(16, 35, 29, 0.98) 0%, rgba(16, 35, 29, 0.9) 34%, rgba(16, 35, 29, 0.58) 62%, rgba(16, 35, 29, 0.22) 100%),
+        linear-gradient(90deg, rgba(255, 246, 216, 0.98) 0%, rgba(255, 241, 199, 0.9) 38%, rgba(246, 218, 151, 0.46) 64%, rgba(246, 218, 151, 0.12) 100%),
         url("assets/van-anh.jpg");
       background-size: auto, 150% auto;
       background-position: center, 16% 34%;
       background-repeat: no-repeat;
-      background-color: var(--pine);
+      background-color: var(--stone);
     }
 
     .hero-inner {
@@ -181,7 +181,7 @@
     .eyebrow {
       margin: 0 0 20px;
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--sand);
+      color: var(--clay);
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0;
@@ -204,7 +204,7 @@
       max-width: 650px;
       margin: 26px 0 0;
       font-size: clamp(18px, 2.3vw, 23px);
-      color: rgba(255, 253, 248, 0.88);
+      color: rgba(43, 33, 20, 0.78);
     }
 
     .hero-actions {
@@ -220,13 +220,13 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1px;
       max-width: 880px;
-      background: rgba(255, 253, 248, 0.18);
-      border: 1px solid rgba(255, 253, 248, 0.18);
+      background: rgba(122, 90, 34, 0.14);
+      border: 1px solid rgba(122, 90, 34, 0.18);
     }
 
     .stat {
       padding: 22px;
-      background: rgba(16, 35, 29, 0.58);
+      background: rgba(255, 253, 248, 0.62);
     }
 
     .stat strong {
@@ -234,13 +234,13 @@
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 28px;
       line-height: 1;
-      color: var(--sand);
+      color: var(--moss);
     }
 
     .stat span {
       display: block;
       margin-top: 9px;
-      color: rgba(255, 253, 248, 0.78);
+      color: var(--muted);
       font-size: 15px;
     }
 
@@ -276,8 +276,8 @@
     }
 
     .quote-band {
-      background: var(--moss);
-      color: var(--white);
+      background: #f5de9d;
+      color: var(--ink);
       padding: 72px 0;
     }
 
@@ -287,7 +287,7 @@
       text-align: center;
       font-size: clamp(26px, 4vw, 46px);
       line-height: 1.22;
-      color: var(--stone);
+      color: #4e3715;
     }
 
     .quote cite {
@@ -295,7 +295,7 @@
       margin-top: 22px;
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 14px;
-      color: var(--sand);
+      color: var(--clay);
       font-style: normal;
       text-transform: uppercase;
       letter-spacing: 0;
@@ -364,7 +364,7 @@
       border-radius: 8px;
       padding: 26px;
       min-height: 100%;
-      box-shadow: 0 12px 35px rgba(32, 53, 45, 0.06);
+      box-shadow: 0 12px 35px rgba(91, 65, 25, 0.08);
     }
 
     .card .number {
@@ -392,29 +392,29 @@
     }
 
     .deep {
-      background: var(--pine);
-      color: var(--white);
+      background: #f8e6b3;
+      color: var(--ink);
     }
 
     .deep h2,
     .deep .card h3 {
-      color: var(--stone);
+      color: var(--moss);
     }
 
     .deep .lead,
     .deep .card p {
-      color: rgba(255, 253, 248, 0.72);
+      color: var(--muted);
     }
 
     .deep .card {
-      background: rgba(255, 253, 248, 0.06);
-      border-color: rgba(255, 253, 248, 0.16);
-      box-shadow: none;
+      background: rgba(255, 253, 248, 0.58);
+      border-color: rgba(122, 90, 34, 0.16);
+      box-shadow: 0 12px 35px rgba(91, 65, 25, 0.06);
     }
 
     .deep .card .number {
-      background: rgba(215, 200, 173, 0.12);
-      color: var(--sand);
+      background: rgba(122, 90, 34, 0.12);
+      color: var(--moss);
     }
 
     .profile {
@@ -432,7 +432,7 @@
       min-height: 540px;
       border-radius: 8px;
       background:
-        linear-gradient(180deg, rgba(16, 35, 29, 0.12), rgba(16, 35, 29, 0.72)),
+        linear-gradient(180deg, rgba(255, 246, 216, 0.08), rgba(91, 65, 25, 0.42)),
         url("assets/van-anh.jpg") center 30% / cover;
       box-shadow: var(--shadow);
     }
@@ -446,7 +446,7 @@
 
     .credential {
       padding: 18px;
-      border: 1px solid rgba(32, 53, 45, 0.14);
+      border: 1px solid rgba(122, 90, 34, 0.16);
       border-radius: 8px;
       background: rgba(255, 253, 248, 0.58);
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -462,7 +462,7 @@
     }
 
     .pill {
-      border: 1px solid rgba(32, 53, 45, 0.16);
+      border: 1px solid rgba(122, 90, 34, 0.18);
       border-radius: 999px;
       padding: 9px 14px;
       background: rgba(255, 253, 248, 0.52);
@@ -525,22 +525,22 @@
       flex-direction: column;
       min-height: 100%;
       padding: 28px;
-      border: 1px solid rgba(255, 253, 248, 0.16);
+      border: 1px solid rgba(122, 90, 34, 0.16);
       border-radius: 8px;
-      background: rgba(255, 253, 248, 0.06);
+      background: rgba(255, 253, 248, 0.58);
     }
 
     .testimonial::before {
       content: "“";
       height: 42px;
-      color: var(--sand);
+      color: var(--brass);
       font-size: 62px;
       line-height: 0.8;
     }
 
     .testimonial p {
       margin: 0;
-      color: rgba(255, 253, 248, 0.78);
+      color: #4b473f;
       font-size: 16px;
     }
 
@@ -548,21 +548,21 @@
       margin-top: auto;
       padding: 22px 0 0;
       background: transparent;
-      color: var(--stone);
+      color: var(--ink);
       font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: 14px;
     }
 
     .testimonial strong {
       display: block;
-      color: var(--sand);
+      color: var(--moss);
       font-size: 14px;
     }
 
     .testimonial span {
       display: block;
       margin-top: 4px;
-      color: rgba(255, 253, 248, 0.62);
+      color: var(--muted);
     }
 
     details {
@@ -586,9 +586,9 @@
 
     .cta {
       background:
-        linear-gradient(90deg, rgba(16, 35, 29, 0.95), rgba(32, 53, 45, 0.88)),
+        linear-gradient(90deg, rgba(255, 246, 216, 0.96), rgba(245, 222, 157, 0.88)),
         url("assets/van-anh.jpg") center 36% / cover;
-      color: var(--white);
+      color: var(--ink);
     }
 
     .cta-wrap {
@@ -599,11 +599,11 @@
     }
 
     .cta h2 {
-      color: var(--stone);
+      color: var(--moss);
     }
 
     .cta .lead {
-      color: rgba(255, 253, 248, 0.78);
+      color: var(--muted);
     }
 
     .form {
@@ -629,7 +629,7 @@
 
     input, textarea, select {
       width: 100%;
-      border: 1px solid rgba(32, 53, 45, 0.18);
+      border: 1px solid rgba(122, 90, 34, 0.18);
       border-radius: 4px;
       padding: 13px 14px;
       background: var(--white);
