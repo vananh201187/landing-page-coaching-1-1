@@ -1,0 +1,1116 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coaching 1-1 cùng Nguyễn Thị Vân Anh</title>
+  <meta name="description" content="Coaching 1-1 cùng Nguyễn Thị Vân Anh - EMCC Practitioner Coach, Trainer, Mentor. Đồng hành quay về bình an nội tại, làm chủ cảm xúc và lãnh đạo chính mình.">
+  <style>
+    :root {
+      --moss: #20352d;
+      --moss-2: #2f4a3e;
+      --pine: #10231d;
+      --stone: #ece6d8;
+      --paper: #faf7ef;
+      --sand: #d7c8ad;
+      --clay: #a87358;
+      --brass: #b79a67;
+      --ink: #1c1b18;
+      --muted: #6c675d;
+      --line: rgba(32, 53, 45, 0.16);
+      --white: #fffdf8;
+      --shadow: 0 24px 70px rgba(17, 31, 26, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: ui-serif, Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.65;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(circle at 20% 10%, rgba(183, 154, 103, 0.10), transparent 28%),
+        linear-gradient(90deg, rgba(32, 53, 45, 0.04) 1px, transparent 1px),
+        linear-gradient(rgba(32, 53, 45, 0.035) 1px, transparent 1px);
+      background-size: auto, 72px 72px, 72px 72px;
+      opacity: 0.75;
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(255, 253, 248, 0.14);
+      background: rgba(16, 35, 29, 0.74);
+      backdrop-filter: blur(16px);
+      color: var(--white);
+    }
+
+    .nav-inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      min-height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-weight: 650;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(255, 253, 248, 0.42);
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--sand);
+      font-size: 16px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 14px;
+      color: rgba(255, 253, 248, 0.82);
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0;
+      cursor: pointer;
+      transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--brass);
+      color: var(--pine);
+      border-color: rgba(255, 253, 248, 0.12);
+    }
+
+    .btn-primary:hover {
+      background: #c6aa76;
+    }
+
+    .btn-ghost {
+      color: var(--white);
+      border-color: rgba(255, 253, 248, 0.38);
+      background: rgba(255, 253, 248, 0.06);
+    }
+
+    .btn-dark {
+      background: var(--moss);
+      color: var(--white);
+    }
+
+    .hero {
+      min-height: 94vh;
+      display: grid;
+      align-items: end;
+      color: var(--white);
+      background-image:
+        linear-gradient(90deg, rgba(16, 35, 29, 0.98) 0%, rgba(16, 35, 29, 0.9) 34%, rgba(16, 35, 29, 0.58) 62%, rgba(16, 35, 29, 0.22) 100%),
+        url("assets/van-anh.jpg");
+      background-size: auto, 150% auto;
+      background-position: center, 16% 34%;
+      background-repeat: no-repeat;
+      background-color: var(--pine);
+    }
+
+    .hero-inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 148px 0 76px;
+    }
+
+    .eyebrow {
+      margin: 0 0 20px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--sand);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-weight: 520;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 660px;
+      font-size: clamp(38px, 5.3vw, 68px);
+    }
+
+    .hero-copy {
+      max-width: 650px;
+      margin: 26px 0 0;
+      font-size: clamp(18px, 2.3vw, 23px);
+      color: rgba(255, 253, 248, 0.88);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .hero-stats {
+      margin-top: 64px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      max-width: 880px;
+      background: rgba(255, 253, 248, 0.18);
+      border: 1px solid rgba(255, 253, 248, 0.18);
+    }
+
+    .stat {
+      padding: 22px;
+      background: rgba(16, 35, 29, 0.58);
+    }
+
+    .stat strong {
+      display: block;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 28px;
+      line-height: 1;
+      color: var(--sand);
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 9px;
+      color: rgba(255, 253, 248, 0.78);
+      font-size: 15px;
+    }
+
+    section {
+      padding: 92px 0;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .section-head {
+      max-width: 780px;
+      margin-bottom: 42px;
+    }
+
+    .section-head.center {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: clamp(34px, 4.5vw, 58px);
+      color: var(--moss);
+    }
+
+    .lead {
+      margin: 20px 0 0;
+      font-size: 20px;
+      color: var(--muted);
+    }
+
+    .quote-band {
+      background: var(--moss);
+      color: var(--white);
+      padding: 72px 0;
+    }
+
+    .quote {
+      max-width: 920px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: clamp(26px, 4vw, 46px);
+      line-height: 1.22;
+      color: var(--stone);
+    }
+
+    .quote cite {
+      display: block;
+      margin-top: 22px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 14px;
+      color: var(--sand);
+      font-style: normal;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 58px;
+      align-items: start;
+    }
+
+    .kicker {
+      margin: 0 0 14px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--clay);
+      text-transform: uppercase;
+    }
+
+    .text-block p {
+      margin: 0 0 18px;
+      color: #4b473f;
+      font-size: 18px;
+    }
+
+    .check-list {
+      display: grid;
+      gap: 14px;
+      padding: 0;
+      margin: 26px 0 0;
+      list-style: none;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .check-list li {
+      position: relative;
+      padding: 18px 18px 18px 48px;
+      border: 1px solid var(--line);
+      background: rgba(255, 253, 248, 0.72);
+      border-radius: 8px;
+    }
+
+    .check-list li::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 25px;
+      width: 14px;
+      height: 8px;
+      border-left: 2px solid var(--brass);
+      border-bottom: 2px solid var(--brass);
+      transform: rotate(-45deg);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      background: rgba(255, 253, 248, 0.78);
+      border-radius: 8px;
+      padding: 26px;
+      min-height: 100%;
+      box-shadow: 0 12px 35px rgba(32, 53, 45, 0.06);
+    }
+
+    .card .number {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      margin-bottom: 18px;
+      background: rgba(183, 154, 103, 0.18);
+      color: var(--moss);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-weight: 800;
+    }
+
+    .card h3 {
+      font-size: 24px;
+      color: var(--moss);
+    }
+
+    .card p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .deep {
+      background: var(--pine);
+      color: var(--white);
+    }
+
+    .deep h2,
+    .deep .card h3 {
+      color: var(--stone);
+    }
+
+    .deep .lead,
+    .deep .card p {
+      color: rgba(255, 253, 248, 0.72);
+    }
+
+    .deep .card {
+      background: rgba(255, 253, 248, 0.06);
+      border-color: rgba(255, 253, 248, 0.16);
+      box-shadow: none;
+    }
+
+    .deep .card .number {
+      background: rgba(215, 200, 173, 0.12);
+      color: var(--sand);
+    }
+
+    .profile {
+      background: var(--stone);
+    }
+
+    .profile-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+      gap: 44px;
+      align-items: stretch;
+    }
+
+    .portrait {
+      min-height: 540px;
+      border-radius: 8px;
+      background:
+        linear-gradient(180deg, rgba(16, 35, 29, 0.12), rgba(16, 35, 29, 0.72)),
+        url("assets/van-anh.jpg") center 30% / cover;
+      box-shadow: var(--shadow);
+    }
+
+    .credentials {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .credential {
+      padding: 18px;
+      border: 1px solid rgba(32, 53, 45, 0.14);
+      border-radius: 8px;
+      background: rgba(255, 253, 248, 0.58);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #4c4a43;
+      font-size: 15px;
+    }
+
+    .values {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .pill {
+      border: 1px solid rgba(32, 53, 45, 0.16);
+      border-radius: 999px;
+      padding: 9px 14px;
+      background: rgba(255, 253, 248, 0.52);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 14px;
+      color: var(--moss);
+    }
+
+    .process {
+      counter-reset: step;
+      display: grid;
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .process-item {
+      counter-increment: step;
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 24px;
+      padding: 30px;
+      background: rgba(255, 253, 248, 0.78);
+    }
+
+    .process-item::before {
+      content: "0" counter(step);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--brass);
+    }
+
+    .process-item h3 {
+      font-size: 25px;
+      color: var(--moss);
+    }
+
+    .process-item p {
+      margin: 10px 0 0;
+      color: var(--muted);
+    }
+
+    .faq {
+      display: grid;
+      gap: 12px;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .testimonial {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      padding: 28px;
+      border: 1px solid rgba(255, 253, 248, 0.16);
+      border-radius: 8px;
+      background: rgba(255, 253, 248, 0.06);
+    }
+
+    .testimonial::before {
+      content: "“";
+      height: 42px;
+      color: var(--sand);
+      font-size: 62px;
+      line-height: 0.8;
+    }
+
+    .testimonial p {
+      margin: 0;
+      color: rgba(255, 253, 248, 0.78);
+      font-size: 16px;
+    }
+
+    .testimonial footer {
+      margin-top: auto;
+      padding: 22px 0 0;
+      background: transparent;
+      color: var(--stone);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 14px;
+    }
+
+    .testimonial strong {
+      display: block;
+      color: var(--sand);
+      font-size: 14px;
+    }
+
+    .testimonial span {
+      display: block;
+      margin-top: 4px;
+      color: rgba(255, 253, 248, 0.62);
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 253, 248, 0.78);
+      padding: 20px 22px;
+    }
+
+    summary {
+      cursor: pointer;
+      color: var(--moss);
+      font-weight: 700;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    details p {
+      margin: 14px 0 0;
+      color: var(--muted);
+    }
+
+    .cta {
+      background:
+        linear-gradient(90deg, rgba(16, 35, 29, 0.95), rgba(32, 53, 45, 0.88)),
+        url("assets/van-anh.jpg") center 36% / cover;
+      color: var(--white);
+    }
+
+    .cta-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.7fr);
+      gap: 54px;
+      align-items: start;
+    }
+
+    .cta h2 {
+      color: var(--stone);
+    }
+
+    .cta .lead {
+      color: rgba(255, 253, 248, 0.78);
+    }
+
+    .form {
+      background: rgba(250, 247, 239, 0.96);
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .form label {
+      display: block;
+      margin-bottom: 6px;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+      font-weight: 750;
+      color: var(--moss);
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid rgba(32, 53, 45, 0.18);
+      border-radius: 4px;
+      padding: 13px 14px;
+      background: var(--white);
+      color: var(--ink);
+      font: 16px ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    textarea {
+      min-height: 104px;
+      resize: vertical;
+    }
+
+    footer {
+      padding: 34px 0;
+      background: var(--pine);
+      color: rgba(255, 253, 248, 0.64);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 14px;
+    }
+
+    .footer-inner {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        background-size: auto, cover;
+        background-position: center, 45% 28%;
+      }
+
+      .hero-inner {
+        padding-top: 128px;
+      }
+
+      .hero-stats,
+      .split,
+      .profile-panel,
+      .cta-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .cards,
+      .testimonial-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .portrait {
+        min-height: 420px;
+      }
+
+      section {
+        padding: 74px 0;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .nav-inner,
+      .container,
+      .hero-inner,
+      .footer-inner {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .brand {
+        font-size: 14px;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .hero-stats,
+      .cards,
+      .testimonial-grid,
+      .credentials {
+        grid-template-columns: 1fr;
+      }
+
+      .process-item {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 24px;
+      }
+
+      .cta-wrap {
+        gap: 30px;
+      }
+
+      .form {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="Nguyễn Thị Vân Anh">
+        <span class="brand-mark">VA</span>
+        <span>Nguyễn Thị Vân Anh</span>
+      </a>
+      <nav class="nav-links" aria-label="Điều hướng chính">
+        <a href="#danh-cho-ai">Dành cho ai</a>
+        <a href="#phuong-phap">Phương pháp</a>
+        <a href="#ve-van-anh">Về Vân Anh</a>
+        <a href="#feedback">Feedback</a>
+        <a href="#lo-trinh">Lộ trình</a>
+        <a class="btn btn-primary" href="#dang-ky">Đặt lịch</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <p class="eyebrow">Coaching 1-1 chuyên sâu</p>
+        <h1 id="hero-title">Quay về bình an nội tại và lãnh đạo chính mình từ bên trong</h1>
+        <p class="hero-copy">Không gian khai vấn 1-1 dành cho người trưởng thành muốn hiểu sâu bản thân, làm chủ cảm xúc, chuyển hóa niềm tin giới hạn và sống sáng rõ hơn trong công việc, đời sống và các mối quan hệ.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#dang-ky">Đặt lịch tư vấn định hướng</a>
+          <a class="btn btn-ghost" href="#phuong-phap">Tìm hiểu lộ trình</a>
+        </div>
+        <div class="hero-stats" aria-label="Kinh nghiệm chuyên môn">
+          <div class="stat">
+            <strong>1000+</strong>
+            <span>giờ khai vấn</span>
+          </div>
+          <div class="stat">
+            <strong>500+</strong>
+            <span>giờ đào tạo và cố vấn</span>
+          </div>
+          <div class="stat">
+            <strong>100+</strong>
+            <span>chủ doanh nghiệp, quản lý cấp cao và cấp trung đã đồng hành</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote-band" aria-label="Thông điệp cốt lõi">
+      <div class="container">
+        <blockquote class="quote">
+          “Bình an không nằm ở việc cuộc đời không biến động, mà ở khả năng quay về và vững vàng bên trong chính mình.”
+          <cite>Nguyễn Thị Vân Anh</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <section id="van-de">
+      <div class="container split">
+        <div class="section-head">
+          <p class="kicker">Điểm bắt đầu</p>
+          <h2>Khi thành tựu bên ngoài không còn đủ để tạo bình an bên trong</h2>
+        </div>
+        <div class="text-block">
+          <p>Có những giai đoạn trong cuộc đời, con người đạt được rất nhiều thành tựu nhưng sâu bên trong lại cảm thấy mệt mỏi, mất kết nối với chính mình, không còn biết điều gì thật sự khiến bản thân hạnh phúc.</p>
+          <p>Coaching 1-1 cùng Vân Anh tạo ra một không gian an toàn, tôn trọng và bảo mật để bạn được lắng nghe sâu, soi chiếu vấn đề rõ ràng hơn, và từng bước chuyển hóa nhận thức thành hành động cụ thể.</p>
+          <ul class="check-list">
+            <li>Thành công nhưng thiếu bình an.</li>
+            <li>Luôn cố gắng nhưng vẫn thấy trống rỗng.</li>
+            <li>Mất kết nối với cảm xúc và nhu cầu thật.</li>
+            <li>Loay hoay giữa trách nhiệm, các mối quan hệ và ý nghĩa sống.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="danh-cho-ai" class="deep">
+      <div class="container">
+        <div class="section-head center">
+          <p class="eyebrow">Dành cho ai</p>
+          <h2>Hành trình này phù hợp với người sẵn sàng nhìn lại mình một cách trung thực</h2>
+          <p class="lead">Không phải một công thức phát triển bản thân đại trà, đây là quá trình đồng hành cá nhân hóa theo vấn đề, nhịp sống và mục tiêu thật của bạn.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="number">01</div>
+            <h3>Mệt mỏi, mất phương hướng</h3>
+            <p>Bạn đã cố gắng rất nhiều nhưng vẫn chưa cảm thấy hạnh phúc, bình an hay thật sự sống là chính mình.</p>
+          </article>
+          <article class="card">
+            <div class="number">02</div>
+            <h3>Thành công nhưng áp lực</h3>
+            <p>Bạn có trách nhiệm, vai trò và thành tựu, nhưng bên trong thường xuyên căng thẳng, cô đơn hoặc quá tải.</p>
+          </article>
+          <article class="card">
+            <div class="number">03</div>
+            <h3>Muốn chữa lành và chuyển hóa</h3>
+            <p>Bạn muốn hiểu sâu bản thân, vượt qua tổn thương, nỗi sợ và niềm tin giới hạn để sống nhẹ nhàng hơn.</p>
+          </article>
+          <article class="card">
+            <div class="number">04</div>
+            <h3>Phát triển và lãnh đạo chính mình</h3>
+            <p>Bạn muốn sống tỉnh thức hơn, làm chủ cảm xúc, nâng cao nội lực và kiến tạo cuộc đời từ bên trong.</p>
+          </article>
+          <article class="card">
+            <div class="number">05</div>
+            <h3>Muốn trở thành coach</h3>
+            <p>Bạn muốn học cách lắng nghe, thấu hiểu, hỗ trợ người khác và xây dựng sự nghiệp khai vấn bền vững.</p>
+          </article>
+          <article class="card">
+            <div class="number">06</div>
+            <h3>Cần một không gian an toàn</h3>
+            <p>Bạn cần một người đồng hành có chiều sâu, hiện diện, bảo mật và đủ chuyên môn để giúp bạn soi chiếu vấn đề.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="phuong-phap">
+      <div class="container">
+        <div class="section-head">
+          <p class="kicker">Phương pháp</p>
+          <h2>Đồng hành từ sự lắng nghe sâu đến hành động cụ thể</h2>
+          <p class="lead">Coaching không phải là lời khuyên áp đặt. Đây là quá trình giúp bạn nhìn rõ điều đang diễn ra bên trong, mở ra lựa chọn mới và tích hợp sự chuyển hóa vào đời sống thực tế.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="number">01</div>
+            <h3>Làm rõ hiện trạng</h3>
+            <p>Nhìn lại điều đang diễn ra trong đời sống, công việc, cảm xúc và các mối quan hệ để gọi tên đúng vấn đề.</p>
+          </article>
+          <article class="card">
+            <div class="number">02</div>
+            <h3>Kết nối với bản thân</h3>
+            <p>Lắng nghe cảm xúc, nhu cầu, giá trị và tiếng nói bên trong để tạo nền tảng cho quyết định rõ ràng hơn.</p>
+          </article>
+          <article class="card">
+            <div class="number">03</div>
+            <h3>Chuyển hóa niềm tin giới hạn</h3>
+            <p>Nhận diện nỗi sợ, câu chuyện cũ và niềm tin đang giới hạn mình, từ đó mở ra cách nhìn mới.</p>
+          </article>
+          <article class="card">
+            <div class="number">04</div>
+            <h3>Lãnh đạo chính mình</h3>
+            <p>Xây dựng năng lực tự quan sát, tự điều chỉnh và hành động từ trạng thái bình an, sáng rõ, tự chủ.</p>
+          </article>
+          <article class="card">
+            <div class="number">05</div>
+            <h3>Hành động và tích hợp</h3>
+            <p>Sau mỗi buổi, bạn có nhận thức, cam kết hoặc bước hành động cụ thể để áp dụng vào đời sống.</p>
+          </article>
+          <article class="card">
+            <div class="number">06</div>
+            <h3>Bảo mật và tôn trọng</h3>
+            <p>Không gian khai vấn được xây dựng trên sự an toàn, hiện diện, tôn trọng và cam kết bảo mật.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ve-van-anh" class="profile">
+      <div class="container profile-panel">
+        <div class="portrait" role="img" aria-label="Không gian thiền tĩnh lặng trong thiên nhiên"></div>
+        <div class="text-block">
+          <p class="kicker">Về Nguyễn Thị Vân Anh</p>
+          <h2>EMCC Practitioner Coach, Trainer, Mentor</h2>
+          <p>Vân Anh là Trưởng bộ phận Đào tạo tại Học viện RNI, có gần 10 năm kinh nghiệm quản lý, lãnh đạo trong môi trường doanh nghiệp và nhiều năm làm việc chuyên sâu trong lĩnh vực phát triển con người.</p>
+          <p>Thông qua hành trình khai vấn, đào tạo và đồng hành sâu bên trong, Vân Anh mong muốn tạo nên một không gian an toàn để mỗi người được lắng nghe, được thấu hiểu và từng bước quay trở về với chính mình, nơi có sự bình an, tự do và hạnh phúc thật sự.</p>
+          <div class="credentials">
+            <div class="credential">EMCC Practitioner Coach</div>
+            <div class="credential">1000+ giờ khai vấn</div>
+            <div class="credential">500+ giờ đào tạo và cố vấn</div>
+            <div class="credential">100+ lãnh đạo và quản lý đã đồng hành</div>
+            <div class="credential">Trưởng bộ phận Đào tạo - Học viện RNI</div>
+            <div class="credential">Đang theo học Văn bằng 2 Tâm lý học</div>
+          </div>
+          <div class="values" aria-label="Giá trị cốt lõi">
+            <span class="pill">Bình an nội tại</span>
+            <span class="pill">Thấu hiểu bản thân</span>
+            <span class="pill">Chuyển hóa từ gốc rễ</span>
+            <span class="pill">Sống tỉnh thức</span>
+            <span class="pill">Lãnh đạo chính mình</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="feedback" class="deep">
+      <div class="container">
+        <div class="section-head center">
+          <p class="eyebrow">Feedback khách hàng</p>
+          <h2>Những chuyển hóa được ghi nhận từ hành trình coaching 1-1</h2>
+          <p class="lead">Các phản hồi dưới đây được biên tập theo hướng ẩn danh, giữ trọng tâm vào trải nghiệm và kết quả chuyển hóa của khách hàng.</p>
+        </div>
+        <div class="testimonial-grid">
+          <article class="testimonial">
+            <p>Điều tôi nhận được không chỉ là sự rõ ràng trong công việc, mà còn là khả năng dừng lại và lắng nghe chính mình. Sau các buổi coaching, tôi ra quyết định bình tĩnh hơn, bớt bị cuốn vào áp lực và biết cách quay về với điều thật sự quan trọng.</p>
+            <footer>
+              <strong>Chủ doanh nghiệp</strong>
+              <span>38 tuổi</span>
+            </footer>
+          </article>
+          <article class="testimonial">
+            <p>Trước đây tôi thường nghĩ mình phải mạnh mẽ và tự xử lý mọi thứ. Quá trình làm việc với Vân Anh giúp tôi nhận ra nhiều cảm xúc bị bỏ quên, hiểu vì sao mình dễ căng thẳng, và học cách lãnh đạo đội nhóm từ sự vững vàng bên trong.</p>
+            <footer>
+              <strong>Quản lý cấp trung</strong>
+              <span>34 tuổi</span>
+            </footer>
+          </article>
+          <article class="testimonial">
+            <p>Không gian coaching rất an toàn và sâu. Tôi không có cảm giác bị phán xét hay bị thúc ép phải thay đổi thật nhanh. Mỗi buổi đều giúp tôi nhìn rõ một lớp vấn đề, từ đó có lựa chọn nhẹ nhàng và trung thực hơn với chính mình.</p>
+            <footer>
+              <strong>Nữ lãnh đạo</strong>
+              <span>42 tuổi</span>
+            </footer>
+          </article>
+          <article class="testimonial">
+            <p>Tôi đến với coaching khi đang rất mệt và mất phương hướng. Điều giá trị nhất là tôi không chỉ tìm lại mục tiêu, mà còn hiểu được những nỗi sợ đang điều khiển mình. Sau hành trình này, tôi biết cách làm việc với áp lực thay vì chống lại nó.</p>
+            <footer>
+              <strong>Founder</strong>
+              <span>31 tuổi</span>
+            </footer>
+          </article>
+          <article class="testimonial">
+            <p>Tôi học được rất nhiều từ cách Vân Anh hiện diện, lắng nghe và đặt câu hỏi. Đây không chỉ là trải nghiệm được khai vấn, mà còn là một chuẩn mực để tôi hiểu thế nào là đồng hành với người khác bằng sự tôn trọng và chiều sâu.</p>
+            <footer>
+              <strong>Học viên định hướng trở thành coach</strong>
+              <span>29 tuổi</span>
+            </footer>
+          </article>
+          <article class="testimonial">
+            <p>Các buổi coaching giúp tôi kết nối lại với giá trị cá nhân và nhìn rõ những mô thức lặp lại trong các mối quan hệ. Tôi cảm thấy mình mềm hơn, rõ hơn và có khả năng chăm sóc bản thân tốt hơn trong những giai đoạn nhiều biến động.</p>
+            <footer>
+              <strong>Chuyên gia độc lập</strong>
+              <span>36 tuổi</span>
+            </footer>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="lo-trinh">
+      <div class="container">
+        <div class="section-head center">
+          <p class="kicker">Lộ trình gợi ý</p>
+          <h2>Từng bước quay về, chuyển hóa và kiến tạo đời sống mới</h2>
+          <p class="lead">Lộ trình cụ thể sẽ được cá nhân hóa sau buổi tư vấn định hướng, dựa trên nhu cầu, vấn đề và mức độ sẵn sàng của bạn.</p>
+        </div>
+        <div class="process">
+          <article class="process-item">
+            <div>
+              <h3>Buổi định hướng ban đầu</h3>
+              <p>Làm rõ nhu cầu, vấn đề, mục tiêu và mức độ phù hợp giữa coach và khách hàng.</p>
+            </div>
+          </article>
+          <article class="process-item">
+            <div>
+              <h3>Thấu hiểu bản thân</h3>
+              <p>Nhận diện cảm xúc, niềm tin, giá trị cá nhân, mô thức phản ứng và những điều đang tạo áp lực bên trong.</p>
+            </div>
+          </article>
+          <article class="process-item">
+            <div>
+              <h3>Chuyển hóa từ gốc rễ</h3>
+              <p>Làm việc với nỗi sợ, tổn thương, niềm tin giới hạn và các điểm nghẽn khiến bạn khó sống bình an.</p>
+            </div>
+          </article>
+          <article class="process-item">
+            <div>
+              <h3>Kiến tạo đời sống mới</h3>
+              <p>Xây dựng cách lựa chọn, hành động và lãnh đạo chính mình dựa trên sự sáng rõ, nội lực và kết nối bên trong.</p>
+            </div>
+          </article>
+          <article class="process-item">
+            <div>
+              <h3>Tích hợp và duy trì</h3>
+              <p>Đưa nhận thức mới vào đời sống, công việc, các mối quan hệ và phong cách lãnh đạo cá nhân.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="deep">
+      <div class="container split">
+        <div class="section-head">
+          <p class="eyebrow">Sự phù hợp</p>
+          <h2>Dịch vụ này dành cho người sẵn sàng cam kết với chính mình</h2>
+        </div>
+        <div class="text-block">
+          <ul class="check-list">
+            <li>Sẵn sàng nhìn lại bản thân một cách trung thực.</li>
+            <li>Dành thời gian cho quá trình chuyển hóa bên trong.</li>
+            <li>Chủ động thực hành giữa các buổi coaching.</li>
+            <li>Tôn trọng tính bảo mật, sự hiện diện và cam kết trong mối quan hệ khai vấn.</li>
+            <li>Chịu trách nhiệm với lựa chọn và hành động của chính mình.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="section-head center">
+          <p class="kicker">Câu hỏi thường gặp</p>
+          <h2>Trước khi bắt đầu</h2>
+        </div>
+        <div class="faq">
+          <details open>
+            <summary>Coaching 1-1 khác gì tư vấn thông thường?</summary>
+            <p>Coaching không tập trung vào việc đưa ra lời khuyên áp đặt. Coach tạo không gian, đặt câu hỏi, lắng nghe và soi chiếu để bạn tự nhận ra điều quan trọng, từ đó đưa ra lựa chọn và hành động phù hợp.</p>
+          </details>
+          <details>
+            <summary>Tôi cần chuẩn bị gì trước buổi đầu tiên?</summary>
+            <p>Bạn chỉ cần chuẩn bị sự cởi mở, một vấn đề hoặc mục tiêu bạn muốn làm rõ, và tinh thần sẵn sàng nhìn lại bản thân một cách trung thực.</p>
+          </details>
+          <details>
+            <summary>Các buổi coaching có được bảo mật không?</summary>
+            <p>Có. Sự an toàn, tôn trọng và bảo mật là nền tảng của quá trình coaching 1-1.</p>
+          </details>
+          <details>
+            <summary>Coaching có thay thế trị liệu tâm lý không?</summary>
+            <p>Không. Coaching có thể đồng hành cùng phát triển cá nhân, nhưng không thay thế trị liệu tâm lý, chẩn đoán hoặc điều trị y khoa. Nếu bạn đang cần hỗ trợ khẩn cấp hoặc can thiệp chuyên môn, hãy tìm đến chuyên gia y tế phù hợp.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="dang-ky" class="cta">
+      <div class="container cta-wrap">
+        <div>
+          <p class="eyebrow">Bắt đầu hành trình</p>
+          <h2>Đặt lịch tư vấn định hướng</h2>
+          <p class="lead">Nếu bạn đang ở một giai đoạn cần dừng lại, lắng nghe mình sâu hơn và tìm lại sự bình an bên trong, hãy bắt đầu bằng một buổi tư vấn để làm rõ nhu cầu, mục tiêu và lộ trình phù hợp.</p>
+          <blockquote class="quote" style="text-align:left; margin:40px 0 0; font-size:28px;">
+            “Hành trình đẹp nhất của một con người không phải là đi thật xa, mà là quay trở về và sống trọn vẹn với chính mình.”
+          </blockquote>
+        </div>
+        <form class="form" action="#" method="post">
+          <div class="field">
+            <label for="name">Họ và tên</label>
+            <input id="name" name="name" type="text" autocomplete="name" placeholder="Tên của bạn">
+          </div>
+          <div class="field">
+            <label for="contact">Email hoặc số điện thoại</label>
+            <input id="contact" name="contact" type="text" autocomplete="email" placeholder="Thông tin liên hệ">
+          </div>
+          <div class="field">
+            <label for="need">Bạn đang cần hỗ trợ điều gì?</label>
+            <select id="need" name="need">
+              <option>Mệt mỏi, mất phương hướng</option>
+              <option>Áp lực trong vai trò lãnh đạo</option>
+              <option>Chữa lành và chuyển hóa bên trong</option>
+              <option>Phát triển bản thân và lãnh đạo chính mình</option>
+              <option>Trở thành coach hoặc người đồng hành chuyên nghiệp</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Điều bạn muốn làm rõ trong buổi đầu</label>
+            <textarea id="message" name="message" placeholder="Chia sẻ ngắn gọn vấn đề hoặc mục tiêu hiện tại"></textarea>
+          </div>
+          <button class="btn btn-dark" type="submit">Gửi đăng ký tư vấn</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>Nguyễn Thị Vân Anh - EMCC Practitioner Coach | Trainer | Mentor</span>
+      <span>Coaching 1-1 hướng tới bình an nội tại và lãnh đạo chính mình</span>
+    </div>
+  </footer>
+</body>
+</html>
