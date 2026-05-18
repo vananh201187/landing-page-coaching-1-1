@@ -623,6 +623,40 @@
       color: var(--moss);
     }
 
+    .booking-panel {
+      display: grid;
+      gap: 18px;
+    }
+
+    .booking-panel h3 {
+      color: var(--moss);
+      font-size: 28px;
+    }
+
+    .booking-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .booking-steps {
+      display: grid;
+      gap: 12px;
+      margin: 4px 0;
+      padding: 0;
+      list-style: none;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #4c4a43;
+      font-size: 15px;
+    }
+
+    .booking-steps li {
+      padding: 13px 14px;
+      border: 1px solid rgba(122, 90, 34, 0.14);
+      border-radius: 6px;
+      background: rgba(255, 248, 230, 0.72);
+    }
+
     .field {
       margin-bottom: 16px;
     }
@@ -755,7 +789,7 @@
         <a href="#ve-van-anh">Về Vân Anh</a>
         <a href="#feedback">Feedback</a>
         <a href="#lo-trinh">Lộ trình</a>
-        <a class="btn btn-primary" href="#dang-ky">Đặt lịch</a>
+        <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSec30xC5kWiP1PDYViAh_WrZtmzwBStlNrxdc638VwFab-0rg/viewform?usp=header" target="_blank" rel="noopener">Đặt lịch</a>
       </nav>
     </div>
   </header>
@@ -767,7 +801,7 @@
         <h1 id="hero-title">Quay về bình an nội tại và lãnh đạo chính mình từ bên trong</h1>
         <p class="hero-copy">Không gian khai vấn 1-1 dành cho người trưởng thành muốn hiểu sâu bản thân, làm chủ cảm xúc, chuyển hóa niềm tin giới hạn và sống sáng rõ hơn trong công việc, đời sống và các mối quan hệ.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#dang-ky">Đặt lịch tư vấn định hướng</a>
+          <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSec30xC5kWiP1PDYViAh_WrZtmzwBStlNrxdc638VwFab-0rg/viewform?usp=header" target="_blank" rel="noopener">Đặt lịch tư vấn định hướng</a>
           <a class="btn btn-ghost" href="#phuong-phap">Tìm hiểu lộ trình</a>
         </div>
         <div class="hero-stats" aria-label="Kinh nghiệm chuyên môn">
@@ -1077,31 +1111,16 @@
             “Hành trình đẹp nhất của một con người không phải là đi thật xa, mà là quay trở về và sống trọn vẹn với chính mình.”
           </blockquote>
         </div>
-        <form class="form" action="#" method="post">
-          <div class="field">
-            <label for="name">Họ và tên</label>
-            <input id="name" name="name" type="text" autocomplete="name" placeholder="Tên của bạn">
-          </div>
-          <div class="field">
-            <label for="contact">Email hoặc số điện thoại</label>
-            <input id="contact" name="contact" type="text" autocomplete="email" placeholder="Thông tin liên hệ">
-          </div>
-          <div class="field">
-            <label for="need">Bạn đang cần hỗ trợ điều gì?</label>
-            <select id="need" name="need">
-              <option>Mệt mỏi, mất phương hướng</option>
-              <option>Áp lực trong vai trò lãnh đạo</option>
-              <option>Chữa lành và chuyển hóa bên trong</option>
-              <option>Phát triển bản thân và lãnh đạo chính mình</option>
-              <option>Trở thành coach hoặc người đồng hành chuyên nghiệp</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="message">Điều bạn muốn làm rõ trong buổi đầu</label>
-            <textarea id="message" name="message" placeholder="Chia sẻ ngắn gọn vấn đề hoặc mục tiêu hiện tại"></textarea>
-          </div>
-          <button class="btn btn-dark" type="submit">Gửi đăng ký tư vấn</button>
-        </form>
+        <div class="form booking-panel">
+          <h3>Gửi thông tin qua Google Form</h3>
+          <p>Sau khi bạn hoàn tất biểu mẫu, thông tin sẽ được gửi trực tiếp đến Vân Anh để xem nhu cầu, xác nhận lịch và kết nối hỗ trợ phù hợp.</p>
+          <ul class="booking-steps">
+            <li>Chia sẻ thông tin liên hệ và nhu cầu hiện tại.</li>
+            <li>Chọn nội dung bạn muốn làm rõ trong buổi tư vấn.</li>
+            <li>Vân Anh sẽ phản hồi để xác nhận bước tiếp theo.</li>
+          </ul>
+          <a class="btn btn-dark" href="https://docs.google.com/forms/d/e/1FAIpQLSec30xC5kWiP1PDYViAh_WrZtmzwBStlNrxdc638VwFab-0rg/viewform?usp=header" target="_blank" rel="noopener">Mở form đăng ký tư vấn</a>
+        </div>
       </div>
     </section>
   </main>
