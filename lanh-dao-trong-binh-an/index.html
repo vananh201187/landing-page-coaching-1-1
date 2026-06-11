@@ -1,0 +1,1193 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Giáo trình Lãnh đạo trong bình an</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f3f5f1;
+      --surface: rgba(255, 255, 255, 0.9);
+      --surface-solid: #ffffff;
+      --surface-soft: #faf8f1;
+      --text: #1f2622;
+      --muted: #68726b;
+      --muted-2: #8a928b;
+      --line: rgba(31, 38, 34, 0.12);
+      --line-soft: rgba(31, 38, 34, 0.07);
+      --accent: #2f766b;
+      --accent-dark: #174f48;
+      --accent-soft: rgba(47, 118, 107, 0.12);
+      --warm: #b67848;
+      --calm: #465d7d;
+      --ink: #17231f;
+      --radius: 8px;
+      --shadow: 0 18px 55px rgba(45, 38, 27, 0.12);
+      --header-h: 76px;
+      --sidebar-w: 310px;
+      --toc-w: 250px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(47, 118, 107, 0.09), transparent 34%),
+        linear-gradient(180deg, #f7f8f4 0%, var(--bg) 48%, #eef3ef 100%);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.62;
+      letter-spacing: 0;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; }
+
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      min-height: var(--header-h);
+      border-bottom: 1px solid var(--line-soft);
+      background: rgba(243, 245, 241, 0.84);
+      backdrop-filter: saturate(180%) blur(20px);
+    }
+
+    .header-inner {
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) auto minmax(240px, 360px);
+      gap: 18px;
+      align-items: center;
+      max-width: 1540px;
+      margin: 0 auto;
+      padding: 14px 28px;
+    }
+
+    .brand-title { margin: 0; font-size: 22px; line-height: 1.15; font-weight: 760; color: var(--ink); }
+    .brand-subtitle { margin: 4px 0 0; color: var(--muted); font-size: 13px; line-height: 1.35; }
+
+    .tabs {
+      display: inline-grid;
+      grid-template-columns: repeat(5, minmax(84px, 1fr));
+      gap: 3px;
+      padding: 3px;
+      border: 1px solid rgba(31, 38, 34, 0.10);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.76);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.9);
+    }
+
+    .tab-button {
+      min-height: 34px;
+      border: 0;
+      border-radius: 6px;
+      background: transparent;
+      color: #5f6c65;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 10px;
+      white-space: nowrap;
+    }
+
+    .tab-button[aria-selected="true"] {
+      background: var(--surface-solid);
+      color: var(--ink);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.10);
+    }
+
+    .search-wrap { position: relative; }
+    .search-input {
+      width: 100%;
+      min-height: 40px;
+      border: 1px solid rgba(31, 38, 34, 0.12);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.9);
+      color: var(--text);
+      padding: 9px 38px;
+      outline: none;
+      font-size: 14px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.95);
+    }
+    .search-input:focus { border-color: rgba(47,111,100,0.45); box-shadow: 0 0 0 4px var(--accent-soft); }
+    .search-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--muted-2); font-size: 15px; }
+    .clear-search {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 26px;
+      height: 26px;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      color: var(--muted);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .clear-search.is-visible { display: flex; }
+    .clear-search:hover { background: rgba(0,0,0,0.06); }
+
+    .layout {
+      display: grid;
+      grid-template-columns: var(--sidebar-w) minmax(0, 1fr) var(--toc-w);
+      gap: 22px;
+      max-width: 1540px;
+      margin: 0 auto;
+      padding: 24px 28px 56px;
+    }
+
+    .sidebar, .toc {
+      position: sticky;
+      top: calc(var(--header-h) + 24px);
+      max-height: calc(100vh - var(--header-h) - 42px);
+      overflow: auto;
+      scrollbar-width: thin;
+    }
+
+    .panel {
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(255,255,255,0.82));
+      box-shadow: 0 1px 0 rgba(255,255,255,0.9), 0 16px 40px rgba(31,38,34,0.05);
+    }
+
+    .sidebar-head, .toc-head { padding: 16px 16px 10px; border-bottom: 1px solid var(--line-soft); }
+    .eyeline { margin: 0; color: var(--accent-dark); font-size: 12px; font-weight: 760; text-transform: uppercase; letter-spacing: 0.04em; }
+    .panel-title { margin: 4px 0 0; font-size: 15px; line-height: 1.25; font-weight: 760; }
+    .count-line { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+
+    .lesson-list { display: grid; gap: 2px; padding: 8px; }
+    .lesson-button {
+      width: 100%;
+      border: 0;
+      border-radius: var(--radius);
+      background: transparent;
+      text-align: left;
+      padding: 10px;
+      color: var(--text);
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+    }
+    .lesson-button:hover { background: rgba(33,30,25,0.05); }
+    .lesson-button.is-active { background: var(--accent-soft); color: var(--accent-dark); }
+    .lesson-number {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(33,30,25,0.06);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 760;
+      margin-top: 1px;
+    }
+    .lesson-button.is-active .lesson-number { background: var(--surface-solid); color: var(--accent); }
+    .lesson-name { display: block; font-size: 14px; font-weight: 700; line-height: 1.28; overflow-wrap: anywhere; }
+    .lesson-meta { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; line-height: 1.3; }
+
+    .reader { min-width: 0; }
+    .mobile-select {
+      display: none;
+      width: 100%;
+      min-height: 42px;
+      margin-bottom: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface-solid);
+      padding: 8px 10px;
+      color: var(--text);
+    }
+
+    .reader-card {
+      min-width: 0;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background: var(--surface-solid);
+      box-shadow: var(--shadow);
+      overflow: clip;
+    }
+
+    .course-hero {
+      position: relative;
+      min-height: 300px;
+      display: grid;
+      align-items: end;
+      isolation: isolate;
+      overflow: hidden;
+      background: #1d332f;
+    }
+    .course-hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+    .course-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(18, 34, 30, 0.92), rgba(22, 45, 40, 0.56) 50%, rgba(22, 45, 40, 0.18)),
+        linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.28));
+    }
+    .hero-copy { max-width: 760px; padding: 42px 44px; color: #fff; }
+    .hero-copy p { margin: 0; color: rgba(255,255,255,0.86); }
+    .hero-copy h1 { margin: 8px 0 14px; font-size: 44px; line-height: 1.08; font-weight: 780; }
+    .hero-kicker { font-size: 13px; font-weight: 760; text-transform: uppercase; letter-spacing: 0.08em; }
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 22px;
+    }
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      border: 1px solid rgba(255,255,255,0.26);
+      border-radius: 999px;
+      padding: 5px 11px;
+      background: rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.92);
+      font-size: 12px;
+      font-weight: 720;
+      backdrop-filter: blur(12px);
+    }
+
+    .course-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-bottom: 1px solid var(--line-soft);
+      background: linear-gradient(180deg, #ffffff 0%, #fbfaf5 100%);
+    }
+    .strip-item {
+      min-height: 86px;
+      padding: 18px 22px;
+      border-right: 1px solid var(--line-soft);
+    }
+    .strip-item:last-child { border-right: 0; }
+    .strip-kicker {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 720;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .strip-value {
+      display: block;
+      margin-top: 5px;
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.25;
+      font-weight: 760;
+    }
+
+    .reader-toolbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      padding: 15px 22px;
+      border-bottom: 1px solid var(--line-soft);
+      background: linear-gradient(180deg, #ffffff 0%, #fbfaf5 100%);
+    }
+    .crumb { color: var(--muted); font-size: 13px; font-weight: 700; }
+    .format-tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      border-radius: 999px;
+      padding: 4px 10px;
+      background: linear-gradient(135deg, rgba(47,118,107,0.13), rgba(70,93,125,0.12));
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 760;
+      white-space: nowrap;
+    }
+
+    .article {
+      display: none;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 42px 44px 64px;
+    }
+    .article.is-active { display: block; }
+    .article h1, .article h2, .article h3, .article h4 {
+      line-height: 1.2;
+      letter-spacing: 0;
+      scroll-margin-top: calc(var(--header-h) + 20px);
+    }
+    .article h1 { margin: 0 0 26px; font-size: 40px; font-weight: 780; color: var(--ink); }
+    .article h2 { margin: 42px 0 16px; font-size: 27px; font-weight: 760; }
+    .article h3 { margin: 30px 0 12px; font-size: 21px; font-weight: 740; }
+    .article p { margin: 0 0 18px; color: #34322f; }
+    .article strong { color: #141310; font-weight: 760; }
+    .article ul, .article ol { margin: 0 0 20px; padding-left: 1.35rem; }
+    .article li { margin: 6px 0; padding-left: 2px; }
+    .article blockquote {
+      margin: 24px 0;
+      padding: 18px 22px;
+      border-left: 4px solid var(--accent);
+      border-radius: var(--radius);
+      background: var(--surface-soft);
+      color: #383632;
+    }
+    .article blockquote p:last-child { margin-bottom: 0; }
+    .article code {
+      background: rgba(33,30,25,0.06);
+      padding: 2px 5px;
+      border-radius: 5px;
+      font-size: 0.92em;
+    }
+    .table-wrap {
+      width: 100%;
+      overflow: auto;
+      margin: 20px 0 26px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+    }
+    table { width: 100%; border-collapse: collapse; min-width: 680px; background: #fff; }
+    th, td { padding: 11px 13px; border-bottom: 1px solid var(--line-soft); text-align: left; vertical-align: top; }
+    th { background: #f1f5ef; font-size: 13px; color: #37443d; }
+    tr:last-child td { border-bottom: 0; }
+
+    .callout {
+      margin: 22px 0;
+      padding: 16px 18px;
+      border: 1px solid rgba(47,118,107,0.18);
+      border-radius: var(--radius);
+      background: rgba(47,118,107,0.07);
+    }
+    .practice-box {
+      margin: 24px 0;
+      border: 1px solid rgba(184,120,72,0.26);
+      border-radius: var(--radius);
+      background: rgba(184,120,72,0.08);
+      padding: 18px 20px;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin: 18px 0 26px;
+    }
+    .mini-card {
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius);
+      background: var(--surface-soft);
+      padding: 16px 18px;
+    }
+    .mini-card h3 { margin-top: 0; font-size: 18px; }
+    .mini-card p:last-child, .callout p:last-child, .practice-box p:last-child { margin-bottom: 0; }
+
+    .toc-list { display: grid; gap: 2px; padding: 8px; }
+    .toc-link {
+      display: block;
+      border-radius: 6px;
+      padding: 7px 9px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    .toc-link:hover { background: rgba(33,30,25,0.05); color: var(--text); }
+    .toc-link.level-3 { padding-left: 20px; font-size: 12px; }
+    .empty-state { padding: 14px; color: var(--muted); font-size: 13px; }
+
+    @media (max-width: 1180px) {
+      :root { --toc-w: 0px; }
+      .layout { grid-template-columns: var(--sidebar-w) minmax(0, 1fr); }
+      .toc { display: none; }
+      .header-inner { grid-template-columns: 1fr; gap: 12px; }
+      .tabs { width: 100%; }
+    }
+
+    @media (max-width: 820px) {
+      :root { --header-h: 0px; }
+      .app-header { position: relative; }
+      .header-inner { padding: 14px 16px; }
+      .tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .layout { display: block; padding: 16px 14px 40px; }
+      .sidebar { display: none; }
+      .mobile-select { display: block; }
+      .reader-toolbar { align-items: flex-start; flex-direction: column; gap: 8px; padding: 14px 16px; }
+      .course-hero { min-height: 270px; }
+      .course-hero::after { background: linear-gradient(180deg, rgba(25,42,39,0.36), rgba(25,42,39,0.88)); }
+      .hero-copy { padding: 34px 22px; }
+      .hero-copy h1 { font-size: 34px; }
+      .course-strip { grid-template-columns: 1fr 1fr; }
+      .strip-item { min-height: 76px; padding: 14px 16px; }
+      .strip-item:nth-child(2) { border-right: 0; }
+      .strip-item:nth-child(-n+2) { border-bottom: 1px solid var(--line-soft); }
+      .article { padding: 30px 20px 44px; overflow-wrap: break-word; }
+      .article h1 { font-size: 31px; }
+      .article h2 { font-size: 23px; margin-top: 36px; }
+      .article h3 { font-size: 19px; }
+      .two-col { grid-template-columns: 1fr; }
+      table { min-width: 620px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <div>
+        <h1 class="brand-title">Lãnh đạo trong bình an</h1>
+        <p class="brand-subtitle">8 buổi online + 1 buổi offline · Lý thuyết, trải nghiệm, thực hành</p>
+      </div>
+      <nav class="tabs" aria-label="Nhóm nội dung">
+        <button class="tab-button" type="button" data-category="overview" aria-selected="true">Tổng quan</button>
+        <button class="tab-button" type="button" data-category="self" aria-selected="false">Hiểu mình</button>
+        <button class="tab-button" type="button" data-category="emotion" aria-selected="false">Cảm xúc</button>
+        <button class="tab-button" type="button" data-category="peace" aria-selected="false">Nội lực</button>
+        <button class="tab-button" type="button" data-category="connect" aria-selected="false">Kết nối</button>
+      </nav>
+      <div class="search-wrap">
+        <span class="search-icon">⌕</span>
+        <input id="searchInput" class="search-input" type="search" placeholder="Tìm trong giáo trình..." autocomplete="off" />
+        <button id="clearSearch" class="clear-search" type="button" aria-label="Xóa tìm kiếm">×</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar panel">
+      <div class="sidebar-head">
+        <p class="eyeline">Danh sách bài</p>
+        <h2 class="panel-title" id="sidebarTitle">Tổng quan</h2>
+        <p class="count-line" id="lessonCount">0 bài</p>
+      </div>
+      <nav class="lesson-list" id="lessonList"></nav>
+    </aside>
+
+    <section class="reader">
+      <select id="lessonSelect" class="mobile-select" aria-label="Chọn bài học"></select>
+      <article class="reader-card">
+        <section class="course-hero" aria-label="Ảnh nhận diện khóa học">
+          <img src="assets/peaceful-leadership.png" alt="Không gian học lãnh đạo bình an" />
+          <div class="hero-copy">
+            <p class="hero-kicker">Giáo trình khóa học</p>
+            <h1>Lãnh đạo trong bình an</h1>
+            <p>Một hành trình giúp người lãnh đạo hiểu mình, điều tiết cảm xúc, nuôi nội lực và giao tiếp tạo kết nối trong những tình huống thật.</p>
+            <div class="hero-meta" aria-label="Thông tin nhanh">
+              <span class="hero-pill">Thiền tỉnh thức</span>
+              <span class="hero-pill">Leadership coaching</span>
+              <span class="hero-pill">Thực hành tình huống thật</span>
+            </div>
+          </div>
+        </section>
+        <section class="course-strip" aria-label="Tóm tắt khóa học">
+          <div class="strip-item">
+            <span class="strip-kicker">Thời lượng</span>
+            <span class="strip-value">8 online + 1 offline</span>
+          </div>
+          <div class="strip-item">
+            <span class="strip-kicker">Nhịp học</span>
+            <span class="strip-value">1 lý thuyết · 1 thực hành sâu</span>
+          </div>
+          <div class="strip-item">
+            <span class="strip-kicker">Phương pháp</span>
+            <span class="strip-value">Lý thuyết · Trải nghiệm · Thực hành</span>
+          </div>
+          <div class="strip-item">
+            <span class="strip-kicker">Đầu ra</span>
+            <span class="strip-value">Tuyên ngôn lãnh đạo bình an</span>
+          </div>
+        </section>
+        <div class="reader-toolbar">
+          <div class="crumb" id="crumb">Tổng quan · Bản đồ chương trình</div>
+          <span class="format-tag" id="formatTag">Tổng quan</span>
+        </div>
+
+        <section class="article is-active" data-category="overview" data-title="Bản đồ chương trình" data-format="Tổng quan">
+          <h1>Bản đồ chương trình</h1>
+          <p>Khóa <strong>Lãnh đạo trong bình an</strong> được thiết kế cho người đang dẫn dắt đội nhóm, chủ doanh nghiệp, quản lý cấp trung, nhà sáng lập hoặc người chuẩn bị bước vào vai trò lãnh đạo. Tinh thần của khóa không phải là trở thành một người luôn bình tĩnh bề ngoài, mà là xây được năng lực quay về với chính mình để ra quyết định sáng hơn, giao tiếp thật hơn và hiện diện vững hơn trước áp lực.</p>
+          <blockquote><p>Câu hỏi trung tâm của khóa: Khi bên ngoài biến động, người lãnh đạo dựa vào đâu để không đánh mất mình?</p></blockquote>
+
+          <h2>4 trụ cột nội dung</h2>
+          <div class="two-col">
+            <div class="mini-card">
+              <h3>1. Thấu hiểu chính mình</h3>
+              <p>Nhận diện hệ giá trị, vai trò, vùng phản ứng tự động và mô thức lãnh đạo đang vận hành bên trong.</p>
+            </div>
+            <div class="mini-card">
+              <h3>2. Làm chủ cảm xúc</h3>
+              <p>Hiểu cơ chế cảm xúc, đọc tín hiệu thân tâm, chuyển từ phản ứng sang lựa chọn có ý thức.</p>
+            </div>
+            <div class="mini-card">
+              <h3>3. Nội lực bình an</h3>
+              <p>Xây nền tảng hiện diện, hồi phục, ranh giới và năng lực đứng vững giữa bất định.</p>
+            </div>
+            <div class="mini-card">
+              <h3>4. Giao tiếp tạo kết nối</h3>
+              <p>Lắng nghe, phản hồi, đối thoại khó và kiến tạo niềm tin trong đội nhóm.</p>
+            </div>
+          </div>
+
+          <h2>Cấu trúc 8 online + 1 offline</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Buổi</th><th>Hình thức</th><th>Trụ cột</th><th>Trọng tâm</th><th>Đầu ra</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Online lý thuyết</td><td>Hiểu mình</td><td>Người lãnh đạo bên trong</td><td>Bản đồ tự nhận thức lãnh đạo</td></tr>
+                <tr><td>2</td><td>Online thực hành sâu</td><td>Hiểu mình</td><td>Giá trị, vai trò, mô thức phản ứng</td><td>Leadership inner map</td></tr>
+                <tr><td>3</td><td>Online lý thuyết</td><td>Cảm xúc</td><td>Cơ chế cảm xúc và phản ứng dưới áp lực</td><td>Emotion trigger map</td></tr>
+                <tr><td>4</td><td>Online thực hành sâu</td><td>Cảm xúc</td><td>Điều tiết cảm xúc trong tình huống thật</td><td>Quy trình 90 giây dừng lại</td></tr>
+                <tr><td>5</td><td>Online lý thuyết</td><td>Nội lực</td><td>Bình an như năng lực lãnh đạo</td><td>Personal stability principles</td></tr>
+                <tr><td>6</td><td>Online thực hành sâu</td><td>Nội lực</td><td>Hiện diện, ranh giới, hồi phục</td><td>Ritual bình an 14 ngày</td></tr>
+                <tr><td>7</td><td>Online lý thuyết</td><td>Kết nối</td><td>Giao tiếp tạo niềm tin</td><td>Connection communication canvas</td></tr>
+                <tr><td>8</td><td>Online thực hành sâu</td><td>Kết nối</td><td>Đối thoại khó và phản hồi trưởng thành</td><td>Kịch bản hội thoại thật</td></tr>
+                <tr><td>9</td><td>Offline</td><td>Tích hợp</td><td>Retreat thực hành và cam kết lãnh đạo</td><td>Bản tuyên ngôn lãnh đạo trong bình an</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Nguyên tắc thiết kế buổi học</h2>
+          <ul>
+            <li><strong>Lý thuyết vừa đủ:</strong> mỗi khái niệm phải giúp học viên nhìn rõ hơn một tình huống lãnh đạo thật.</li>
+            <li><strong>Trải nghiệm trước khi kết luận:</strong> học viên quan sát chính mình qua bài tập, tình huống, phản tư và đối thoại nhóm.</li>
+            <li><strong>Thực hành có đầu ra:</strong> cuối mỗi buổi có một artifact dùng được trong công việc hoặc đời sống lãnh đạo.</li>
+            <li><strong>Nhịp học xen kẽ:</strong> một buổi nền tảng mở khung, buổi kế tiếp đào sâu bằng thực hành và coaching.</li>
+          </ul>
+
+          <h2>Chuẩn đầu ra cuối khóa</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Năng lực</th><th>Biểu hiện đạt yêu cầu</th></tr></thead>
+              <tbody>
+                <tr><td>Tự nhận thức</td><td>Nói rõ được giá trị cốt lõi, điểm mạnh, điểm dễ kích hoạt và mô thức lãnh đạo của mình.</td></tr>
+                <tr><td>Làm chủ cảm xúc</td><td>Biết dừng lại, gọi tên cảm xúc, tách sự kiện khỏi diễn giải và chọn phản hồi phù hợp.</td></tr>
+                <tr><td>Nội lực bình an</td><td>Có nghi thức cá nhân để hồi phục, đặt ranh giới và giữ sự hiện diện dưới áp lực.</td></tr>
+                <tr><td>Giao tiếp kết nối</td><td>Biết lắng nghe sâu, phản hồi không phòng vệ và dẫn dắt một cuộc đối thoại khó.</td></tr>
+                <tr><td>Tích hợp</td><td>Viết được bản tuyên ngôn lãnh đạo và kế hoạch thực hành 30 ngày.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="article" data-category="self" data-title="Buổi 1. Lãnh đạo bắt đầu từ việc thấu hiểu chính mình" data-format="Online lý thuyết">
+          <h1>Buổi 1. Lãnh đạo bắt đầu từ việc thấu hiểu chính mình</h1>
+          <h2>Mục tiêu học tập</h2>
+          <ul>
+            <li>Hiểu vì sao tự nhận thức là nền móng của năng lực lãnh đạo.</li>
+            <li>Phân biệt vai trò lãnh đạo, bản sắc cá nhân, hệ giá trị và hành vi phản ứng.</li>
+            <li>Nhận diện những mô thức tự động thường xuất hiện khi bản thân chịu áp lực.</li>
+            <li>Bắt đầu xây bản đồ tự nhận thức lãnh đạo.</li>
+          </ul>
+          <h2>Câu hỏi bản chất</h2>
+          <blockquote><p>Trước khi dẫn dắt người khác, tôi có đang thật sự hiểu điều gì đang dẫn dắt chính mình không?</p></blockquote>
+          <h2>Kiến thức nền</h2>
+          <p>Nhiều người lãnh đạo bắt đầu bằng kỹ năng: giao việc, họp, ra quyết định, phản hồi, kiểm soát tiến độ. Nhưng khi áp lực tăng, kỹ năng thường bị chi phối bởi phần sâu hơn: nỗi sợ, nhu cầu được công nhận, thói quen kiểm soát, niềm tin về quyền lực, ký ức thất bại, hoặc mong muốn làm hài lòng tất cả mọi người.</p>
+          <p>Tự nhận thức không phải là suy nghĩ nhiều về bản thân. Tự nhận thức là năng lực nhìn thấy tương đối rõ: tôi đang cảm thấy gì, điều gì quan trọng với tôi, tôi đang diễn giải tình huống ra sao, và hành vi của tôi đang tạo tác động gì lên người khác.</p>
+          <h2>Khung tư duy</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Lớp bên trong</th><th>Câu hỏi quan sát</th><th>Biểu hiện trong lãnh đạo</th></tr></thead>
+              <tbody>
+                <tr><td>Giá trị</td><td>Điều gì tôi không muốn đánh đổi?</td><td>Cách chọn ưu tiên, cách ra quyết định khó.</td></tr>
+                <tr><td>Nhu cầu</td><td>Tôi đang cần được an toàn, được công nhận hay được tự do?</td><td>Phản ứng khi bị thách thức hoặc bị bỏ qua.</td></tr>
+                <tr><td>Niềm tin</td><td>Tôi tin người khác chỉ làm tốt khi bị kiểm soát hay khi được tin tưởng?</td><td>Phong cách quản trị và trao quyền.</td></tr>
+                <tr><td>Vết kích hoạt</td><td>Tình huống nào làm tôi mất bình tĩnh nhanh?</td><td>Khoảnh khắc nói quá lời, im lặng, né tránh hoặc áp đặt.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h2>Trải nghiệm trong buổi</h2>
+          <div class="practice-box">
+            <p><strong>Bài tập 1: Ba khoảnh khắc lãnh đạo.</strong> Học viên viết lại 3 khoảnh khắc: một lần mình lãnh đạo tốt, một lần mất kết nối, một lần né tránh. Với mỗi khoảnh khắc, ghi sự kiện, cảm xúc, nhu cầu, hành vi và tác động.</p>
+          </div>
+          <div class="practice-box">
+            <p><strong>Bài tập 2: Gương phản chiếu.</strong> Học viên chọn 5 từ mô tả phong cách lãnh đạo của mình, sau đó dự đoán 5 từ đội nhóm có thể dùng để mô tả mình. Phần chênh lệch là vùng cần quan sát.</p>
+          </div>
+          <h2>Bài tập sau buổi</h2>
+          <ul>
+            <li>Hỏi 3 người từng làm việc cùng: Khi tôi chịu áp lực, bạn thường thấy tôi có xu hướng gì?</li>
+            <li>Ghi nhật ký 5 ngày với mẫu: sự kiện, cảm xúc, phản ứng, điều tôi thật sự cần, lựa chọn khác.</li>
+            <li>Chuẩn bị một tình huống thật để đem vào buổi thực hành sâu.</li>
+          </ul>
+          <h2>Tiêu chí đánh giá</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Mức</th><th>Biểu hiện</th></tr></thead>
+              <tbody>
+                <tr><td>Đạt</td><td>Nêu được giá trị, điểm mạnh và ít nhất 2 vùng dễ kích hoạt.</td></tr>
+                <tr><td>Tốt</td><td>Liên hệ được mô thức bên trong với hành vi lãnh đạo cụ thể.</td></tr>
+                <tr><td>Xuất sắc</td><td>Nhìn thấy tác động của mình lên người khác và chọn được hướng thực hành rõ.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="article" data-category="self" data-title="Buổi 2. Thực hành sâu: Bản đồ lãnh đạo bên trong" data-format="Online thực hành sâu">
+          <h1>Buổi 2. Thực hành sâu: Bản đồ lãnh đạo bên trong</h1>
+          <h2>Mục tiêu thực hành</h2>
+          <p>Buổi này không mở thêm nhiều khái niệm mới. Trọng tâm là giúp học viên đi qua dữ liệu thật của mình, gọi tên mô thức và thiết kế một thử nghiệm nhỏ để lãnh đạo khác đi trong tuần tiếp theo.</p>
+          <h2>Chuẩn bị trước buổi</h2>
+          <ul>
+            <li>Nhật ký 5 ngày từ buổi 1.</li>
+            <li>Phản hồi từ 3 người từng làm việc cùng.</li>
+            <li>Một tình huống đang khiến học viên căng, khó nói hoặc khó quyết định.</li>
+          </ul>
+          <h2>Tiến trình 120 phút</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Thời lượng</th><th>Hoạt động</th><th>Mục đích</th></tr></thead>
+              <tbody>
+                <tr><td>15 phút</td><td>Check-in thân tâm</td><td>Đưa học viên về trạng thái có mặt.</td></tr>
+                <tr><td>25 phút</td><td>Đọc dữ liệu phản hồi</td><td>Tách dữ kiện khỏi tự vệ hoặc tự trách.</td></tr>
+                <tr><td>35 phút</td><td>Vẽ bản đồ bên trong</td><td>Nhận diện giá trị, nỗi sợ, nhu cầu và phản ứng.</td></tr>
+                <tr><td>30 phút</td><td>Coaching theo nhóm 3 người</td><td>Nhận phản chiếu và chọn điểm luyện tập.</td></tr>
+                <tr><td>15 phút</td><td>Cam kết thử nghiệm 7 ngày</td><td>Chuyển nhận thức thành hành động nhỏ.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h2>Mẫu bản đồ lãnh đạo bên trong</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Thành phần</th><th>Nội dung cần điền</th></tr></thead>
+              <tbody>
+                <tr><td>Giá trị cốt lõi</td><td>3 điều tôi muốn bảo vệ trong cách lãnh đạo.</td></tr>
+                <tr><td>Điểm mạnh tự nhiên</td><td>Điều tôi làm tốt mà không cần gồng.</td></tr>
+                <tr><td>Vùng kích hoạt</td><td>Tình huống khiến tôi phản ứng mạnh hoặc mất bình an.</td></tr>
+                <tr><td>Phản ứng quen thuộc</td><td>Kiểm soát, né tránh, chiều lòng, chỉ trích, im lặng, làm thay.</td></tr>
+                <tr><td>Nhu cầu ẩn bên dưới</td><td>An toàn, được tôn trọng, được tin, rõ ràng, công bằng.</td></tr>
+                <tr><td>Lựa chọn mới</td><td>Một hành vi nhỏ tôi sẽ thử trong tuần tới.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h2>Bài thực hành chính</h2>
+          <div class="practice-box">
+            <p><strong>Ghế người quan sát.</strong> Học viên kể một tình huống thật trong 3 phút. Sau đó kể lại tình huống đó từ vị trí người quan sát trung lập: chỉ nói sự kiện, không thêm diễn giải. Nhóm phản chiếu các từ khóa cảm xúc, nhu cầu và mô thức nghe được.</p>
+          </div>
+          <h2>Đầu ra cuối buổi</h2>
+          <ul>
+            <li>Một bản đồ lãnh đạo bên trong hoàn chỉnh phiên bản 1.</li>
+            <li>Một câu nhận diện: Khi tôi bị kích hoạt bởi..., tôi thường..., vì bên dưới tôi cần...</li>
+            <li>Một thử nghiệm 7 ngày: Khi tình huống X xuất hiện, tôi sẽ dừng 10 giây và chọn hành vi Y.</li>
+          </ul>
+        </section>
+
+        <section class="article" data-category="emotion" data-title="Buổi 3. Làm chủ cảm xúc trong lãnh đạo" data-format="Online lý thuyết">
+          <h1>Buổi 3. Làm chủ cảm xúc trong lãnh đạo</h1>
+          <h2>Mục tiêu học tập</h2>
+          <ul>
+            <li>Hiểu cảm xúc là tín hiệu, không phải kẻ thù cần triệt tiêu.</li>
+            <li>Nhận diện chuỗi sự kiện, diễn giải, cảm xúc, xung động và hành vi.</li>
+            <li>Phân biệt kiểm soát cảm xúc với làm chủ cảm xúc.</li>
+            <li>Biết các điểm can thiệp để chuyển từ phản ứng sang lựa chọn.</li>
+          </ul>
+          <h2>Câu hỏi bản chất</h2>
+          <blockquote><p>Khi cảm xúc nổi lên, tôi đang để cảm xúc lái mình hay đang biết dùng cảm xúc như dữ liệu?</p></blockquote>
+          <h2>Kiến thức nền</h2>
+          <p>Trong lãnh đạo, cảm xúc không biến mất chỉ vì ta có chức danh. Người càng có quyền lực, cảm xúc chưa được nhận diện càng dễ tạo ảnh hưởng lớn: một câu nói gắt làm đội nhóm im lặng, một lần thất vọng không nói rõ làm niềm tin giảm, một quyết định trong tức giận làm tổ chức trả giá.</p>
+          <p>Làm chủ cảm xúc không phải là không buồn, không giận, không sợ. Làm chủ là biết mình đang ở trong cảm xúc nào, hiểu thông điệp của nó, và không giao vô lăng hành vi cho xung động nhất thời.</p>
+          <h2>Chuỗi cảm xúc</h2>
+          <div class="callout">
+            <p><code>Sự kiện → Diễn giải → Cảm xúc → Xung động → Hành vi → Tác động</code></p>
+          </div>
+          <p>Phần nhiều xung đột không nằm ở sự kiện mà nằm ở diễn giải. Một nhân sự trả lời tin nhắn chậm có thể được diễn giải là thiếu trách nhiệm, quá tải, không rõ ưu tiên, hoặc đang gặp chuyện riêng. Diễn giải khác nhau tạo cảm xúc khác nhau và dẫn đến hành vi khác nhau.</p>
+          <h2>Các nhóm cảm xúc thường gặp ở lãnh đạo</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Cảm xúc</th><th>Tín hiệu có thể mang theo</th><th>Rủi ro nếu không nhận diện</th></tr></thead>
+              <tbody>
+                <tr><td>Giận</td><td>Ranh giới, công bằng hoặc cam kết bị xâm phạm.</td><td>Nói sắc, áp đặt, làm người khác phòng vệ.</td></tr>
+                <tr><td>Sợ</td><td>Có rủi ro, thiếu an toàn hoặc thiếu thông tin.</td><td>Kiểm soát quá mức, trì hoãn, né quyết định.</td></tr>
+                <tr><td>Buồn</td><td>Mất mát, thất vọng, điều quan trọng không được đáp ứng.</td><td>Thu mình, mất năng lượng, đánh mất kết nối.</td></tr>
+                <tr><td>Xấu hổ</td><td>Bản thân thấy mình không đủ tốt hoặc bị phơi bày.</td><td>Phòng vệ, đổ lỗi, cố chứng minh.</td></tr>
+                <tr><td>Vui</td><td>Giá trị được nuôi dưỡng, kết nối hoặc tiến bộ.</td><td>Chủ quan nếu quá hưng phấn.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h2>Trải nghiệm trong buổi</h2>
+          <div class="practice-box">
+            <p><strong>Bản đồ kích hoạt cảm xúc.</strong> Học viên chọn một tình huống gần đây khiến mình phản ứng mạnh, rồi điền đủ 6 bước trong chuỗi cảm xúc. Trọng tâm là tìm điểm có thể can thiệp trước khi hành vi xảy ra.</p>
+          </div>
+          <h2>Bài tập sau buổi</h2>
+          <ul>
+            <li>Mỗi ngày ghi lại một cảm xúc nổi bật và thông điệp có thể nằm bên dưới.</li>
+            <li>Thực hành câu: “Tôi đang nhận thấy trong mình có...” thay cho “Tôi là người...”</li>
+            <li>Chuẩn bị một cuộc hội thoại hoặc quyết định mà cảm xúc đang ảnh hưởng mạnh.</li>
+          </ul>
+        </section>
+
+        <section class="article" data-category="emotion" data-title="Buổi 4. Thực hành sâu: Điều tiết cảm xúc dưới áp lực" data-format="Online thực hành sâu">
+          <h1>Buổi 4. Thực hành sâu: Điều tiết cảm xúc dưới áp lực</h1>
+          <h2>Mục tiêu thực hành</h2>
+          <p>Học viên luyện các thao tác cụ thể để nhận diện, điều tiết và chuyển hóa cảm xúc trong tình huống lãnh đạo thật. Buổi này ưu tiên thực hành thân thể, ngôn ngữ và mô phỏng tình huống.</p>
+          <h2>Quy trình 90 giây dừng lại</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Bước</th><th>Câu hỏi</th><th>Thực hành</th></tr></thead>
+              <tbody>
+                <tr><td>1. Dừng</td><td>Tôi có đang bị kéo đi không?</td><td>Ngưng nói, thở ra dài, đặt chân xuống sàn.</td></tr>
+                <tr><td>2. Gọi tên</td><td>Cảm xúc chính là gì?</td><td>Nói thầm: đang có giận, sợ, buồn, xấu hổ...</td></tr>
+                <tr><td>3. Tách lớp</td><td>Sự kiện thật là gì, diễn giải của tôi là gì?</td><td>Viết một câu sự kiện không phán xét.</td></tr>
+                <tr><td>4. Hỏi nhu cầu</td><td>Điều gì quan trọng đang cần được chăm sóc?</td><td>Chọn một nhu cầu: rõ ràng, tôn trọng, an toàn...</td></tr>
+                <tr><td>5. Chọn đáp ứng</td><td>Hành vi nào phục vụ mục tiêu dài hạn?</td><td>Nói một câu chậm, rõ, không công kích.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h2>Thực hành 1: Hạ nhiệt thân thể</h2>
+          <div class="practice-box">
+            <p>Học viên luyện 3 vòng: thở ra dài hơn hít vào, thả vai và hàm, đặt tên 5 vật đang nhìn thấy. Mục tiêu là đưa hệ thần kinh ra khỏi trạng thái phản ứng để có lại khoảng chọn.</p>
+          </div>
+          <h2>Thực hành 2: Đổi câu phản ứng</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Câu phản ứng</th><th>Câu làm chủ</th></tr></thead>
+              <tbody>
+                <tr><td>Em làm vậy là không có trách nhiệm.</td><td>Anh đang lo vì việc này trễ so với cam kết. Mình cùng nhìn lại nguyên nhân và bước tiếp theo nhé.</td></tr>
+                <tr><td>Tôi nói bao nhiêu lần rồi?</td><td>Có vẻ cách mình thống nhất trước đây chưa đủ rõ. Ta cần làm rõ lại tiêu chuẩn đầu ra.</td></tr>
+                <tr><td>Đừng biện minh nữa.</td><td>Anh muốn nghe dữ kiện trước, rồi mình phân biệt phần nguyên nhân và phần cần chịu trách nhiệm.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h2>Thực hành 3: Mô phỏng tình huống</h2>
+          <p>Mỗi học viên chọn một tình huống thật, đóng vai trong 5 phút, nhận phản hồi theo 3 tiêu chí: có dừng lại không, có gọi tên nhu cầu không, câu nói có giữ kết nối và trách nhiệm không.</p>
+          <h2>Đầu ra cuối buổi</h2>
+          <ul>
+            <li>Một bản emotion trigger map đã hoàn chỉnh.</li>
+            <li>Một câu neo cá nhân để dừng lại khi bị kích hoạt.</li>
+            <li>Một cuộc hội thoại thật sẽ thực hành trong 7 ngày tới.</li>
+          </ul>
+        </section>
+
+        <section class="article" data-category="peace" data-title="Buổi 5. Nội lực bình an trong lãnh đạo" data-format="Online lý thuyết">
+          <h1>Buổi 5. Nội lực bình an trong lãnh đạo</h1>
+          <h2>Mục tiêu học tập</h2>
+          <ul>
+            <li>Hiểu bình an như một năng lực nội tại, không phải trạng thái dễ chịu tạm thời.</li>
+            <li>Nhận diện các nguồn làm tiêu hao nội lực của người lãnh đạo.</li>
+            <li>Phân biệt chịu đựng, gồng mạnh và vững vàng.</li>
+            <li>Xây bộ nguyên tắc cá nhân để đứng vững trước bất định.</li>
+          </ul>
+          <h2>Câu hỏi bản chất</h2>
+          <blockquote><p>Tôi đang lấy năng lượng lãnh đạo từ sự gồng kiểm soát hay từ một nền tảng bên trong đủ vững?</p></blockquote>
+          <h2>Kiến thức nền</h2>
+          <p>Bình an trong lãnh đạo không có nghĩa là mọi thứ xung quanh phải êm. Người lãnh đạo vẫn phải xử lý doanh số, nhân sự, kỳ vọng, xung đột, cạnh tranh và thay đổi. Bình an là khả năng giữ được trung tâm bên trong khi những điều đó xảy ra.</p>
+          <p>Nội lực không chỉ đến từ ý chí. Nội lực đến từ sự rõ ràng về điều quan trọng, khả năng hồi phục, ranh giới lành mạnh, kết nối nâng đỡ và niềm tin rằng mình có thể đối diện sự thật mà không cần đánh mất nhân tính.</p>
+          <h2>4 nguồn nội lực</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Nguồn</th><th>Câu hỏi kiểm tra</th><th>Thực hành nuôi dưỡng</th></tr></thead>
+              <tbody>
+                <tr><td>Hiện diện</td><td>Tôi có đang ở đây hay đang sống trong lo sợ tương lai?</td><td>Thở, quan sát thân thể, đơn nhiệm.</td></tr>
+                <tr><td>Ý nghĩa</td><td>Việc này phục vụ điều gì lớn hơn cái tôi?</td><td>Kết nối với giá trị và sứ mệnh.</td></tr>
+                <tr><td>Ranh giới</td><td>Tôi đang ôm phần trách nhiệm của ai?</td><td>Nói rõ phạm vi, tiêu chuẩn và điều không nhận.</td></tr>
+                <tr><td>Hồi phục</td><td>Tôi có đang tiêu năng lượng nhiều hơn khả năng tái tạo?</td><td>Ngủ, nghỉ, vận động, khoảng lặng, hỗ trợ.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h2>Lỗi thường gặp</h2>
+          <ul>
+            <li>Nhầm bình an với né xung đột, nên im lặng khi cần nói thật.</li>
+            <li>Nhầm mạnh mẽ với không cần ai hỗ trợ.</li>
+            <li>Nhầm trách nhiệm với ôm hết việc của đội nhóm.</li>
+            <li>Nhầm tốc độ với hiệu quả, khiến hệ thần kinh luôn ở trạng thái khẩn cấp.</li>
+          </ul>
+          <h2>Trải nghiệm trong buổi</h2>
+          <div class="practice-box">
+            <p><strong>Audit năng lượng lãnh đạo.</strong> Học viên liệt kê 10 việc đang chiếm năng lượng, phân loại thành: nuôi dưỡng, tiêu hao cần thiết, tiêu hao do thiếu ranh giới, tiêu hao do tự tạo áp lực.</p>
+          </div>
+          <h2>Bài tập sau buổi</h2>
+          <ul>
+            <li>Chọn một ranh giới sẽ nói rõ trong tuần này.</li>
+            <li>Thiết kế một nghi thức 10 phút mỗi ngày để quay về trạng thái có mặt.</li>
+            <li>Ghi lại một quyết định được đưa ra từ bình an và một quyết định được đưa ra từ sợ hãi.</li>
+          </ul>
+        </section>
+
+        <section class="article" data-category="peace" data-title="Buổi 6. Thực hành sâu: Xây nghi thức bình an cá nhân" data-format="Online thực hành sâu">
+          <h1>Buổi 6. Thực hành sâu: Xây nghi thức bình an cá nhân</h1>
+          <h2>Mục tiêu thực hành</h2>
+          <p>Học viên thiết kế một hệ thực hành cá nhân có thể duy trì trong đời sống thật: ngắn, rõ, không phụ thuộc vào cảm hứng và gắn trực tiếp với tình huống lãnh đạo.</p>
+          <h2>3 tầng thực hành</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Tầng</th><th>Mục tiêu</th><th>Ví dụ</th></tr></thead>
+              <tbody>
+                <tr><td>Trước áp lực</td><td>Tạo nền ổn định hằng ngày.</td><td>10 phút tĩnh lặng, viết 3 ưu tiên, kiểm tra năng lượng.</td></tr>
+                <tr><td>Trong áp lực</td><td>Dừng phản ứng và giữ trung tâm.</td><td>Thở ra dài, gọi tên cảm xúc, xin 5 phút để suy nghĩ.</td></tr>
+                <tr><td>Sau áp lực</td><td>Hồi phục và học từ trải nghiệm.</td><td>Phản tư sau cuộc họp, sửa lời nếu cần, nghỉ phục hồi.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h2>Thực hành 1: Nghi thức 10 phút</h2>
+          <div class="practice-box">
+            <p>Học viên thử một chuỗi 10 phút: 2 phút thở, 3 phút quét thân thể, 3 phút viết điều quan trọng hôm nay, 2 phút chọn một thái độ lãnh đạo muốn mang vào ngày làm việc.</p>
+          </div>
+          <h2>Thực hành 2: Nói ranh giới không làm mất kết nối</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Tình huống</th><th>Câu nói gợi ý</th></tr></thead>
+              <tbody>
+                <tr><td>Nhân sự chuyển trách nhiệm lên quản lý</td><td>Anh có thể hỗ trợ em nhìn hướng xử lý, nhưng phần quyết định và cập nhật tiến độ vẫn là trách nhiệm của em.</td></tr>
+                <tr><td>Lịch họp lấn vào thời gian hồi phục</td><td>Khung này tôi không nhận thêm họp. Tôi có thể phản hồi vào sáng mai lúc 9h.</td></tr>
+                <tr><td>Đội nhóm kỳ vọng câu trả lời ngay</td><td>Tôi cần kiểm tra dữ kiện trước khi quyết định. Mình chốt lại vào cuối ngày.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h2>Thực hành 3: Kế hoạch hồi phục</h2>
+          <p>Học viên xác định dấu hiệu cá nhân khi nội lực xuống thấp, những hoạt động phục hồi thật sự có hiệu quả, và người hoặc không gian có thể hỗ trợ mình quay về.</p>
+          <h2>Đầu ra cuối buổi</h2>
+          <ul>
+            <li>Một ritual bình an 14 ngày.</li>
+            <li>Một câu ranh giới sẽ dùng trong tuần này.</li>
+            <li>Một kế hoạch hồi phục sau giai đoạn áp lực cao.</li>
+          </ul>
+        </section>
+
+        <section class="article" data-category="connect" data-title="Buổi 7. Giao tiếp tạo kết nối" data-format="Online lý thuyết">
+          <h1>Buổi 7. Giao tiếp tạo kết nối</h1>
+          <h2>Mục tiêu học tập</h2>
+          <ul>
+            <li>Hiểu giao tiếp lãnh đạo là tạo rõ ràng và kết nối cùng lúc.</li>
+            <li>Phân biệt nghe để trả lời, nghe để phòng vệ và nghe để hiểu.</li>
+            <li>Biết cấu trúc một phản hồi khó mà không phá vỡ phẩm giá người nghe.</li>
+            <li>Nắm khung đối thoại giúp đội nhóm an toàn để nói thật và chịu trách nhiệm.</li>
+          </ul>
+          <h2>Câu hỏi bản chất</h2>
+          <blockquote><p>Lời nói của tôi đang làm người khác mở ra, rõ hơn và có trách nhiệm hơn, hay đang khiến họ thu lại?</p></blockquote>
+          <h2>Kiến thức nền</h2>
+          <p>Giao tiếp tạo kết nối không phải là nói nhẹ để tránh mất lòng. Kết nối trưởng thành gồm sự thật và sự tôn trọng. Thiếu sự thật, kết nối thành chiều lòng. Thiếu tôn trọng, sự thật thành công kích.</p>
+          <p>Trong đội nhóm, người lãnh đạo tạo khí hậu giao tiếp qua từng phản ứng nhỏ: có ngắt lời không, có hỏi trước khi kết luận không, có thừa nhận phần mình không, có làm rõ kỳ vọng không, có giữ lời không.</p>
+          <h2>4 năng lực lõi</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Năng lực</th><th>Câu hỏi thực hành</th><th>Dấu hiệu đạt</th></tr></thead>
+              <tbody>
+                <tr><td>Lắng nghe sâu</td><td>Điều người kia thật sự đang cố nói là gì?</td><td>Người nói thấy được hiểu trước khi bị sửa.</td></tr>
+                <tr><td>Phản hồi rõ</td><td>Dữ kiện, tác động và kỳ vọng mới là gì?</td><td>Người nghe biết cần thay đổi điều gì.</td></tr>
+                <tr><td>Đối thoại khó</td><td>Làm sao nói thật mà không làm nhục?</td><td>Vấn đề được đặt lên bàn, quan hệ vẫn còn đường đi.</td></tr>
+                <tr><td>Tạo cam kết</td><td>Sau cuộc nói chuyện, ai làm gì, khi nào?</td><td>Có hành động tiếp theo cụ thể.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h2>Khung phản hồi SBI-C</h2>
+          <div class="callout">
+            <p><strong>Situation:</strong> tình huống cụ thể. <strong>Behavior:</strong> hành vi quan sát được. <strong>Impact:</strong> tác động. <strong>Commitment:</strong> cam kết tiếp theo.</p>
+          </div>
+          <h2>Trải nghiệm trong buổi</h2>
+          <div class="practice-box">
+            <p><strong>Nghe 3 lớp.</strong> Một người kể tình huống trong 4 phút. Người nghe phản chiếu lần lượt: sự kiện, cảm xúc, nhu cầu/điều quan trọng. Không tư vấn trong lượt đầu.</p>
+          </div>
+          <h2>Bài tập sau buổi</h2>
+          <ul>
+            <li>Chọn một cuộc trò chuyện cần tạo rõ ràng hơn.</li>
+            <li>Viết trước câu mở đầu, dữ kiện, tác động và lời mời đối thoại.</li>
+            <li>Quan sát trong 3 cuộc họp: mình nghe để hiểu hay nghe để phản ứng?</li>
+          </ul>
+        </section>
+
+        <section class="article" data-category="connect" data-title="Buổi 8. Thực hành sâu: Đối thoại khó và phản hồi trưởng thành" data-format="Online thực hành sâu">
+          <h1>Buổi 8. Thực hành sâu: Đối thoại khó và phản hồi trưởng thành</h1>
+          <h2>Mục tiêu thực hành</h2>
+          <p>Học viên luyện một cuộc đối thoại thật từ chuẩn bị đến thực hành mô phỏng. Trọng tâm là giữ đồng thời ba điều: nói sự thật, giữ kết nối, tạo cam kết.</p>
+          <h2>Checklist chuẩn bị đối thoại khó</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Phần chuẩn bị</th><th>Câu hỏi</th></tr></thead>
+              <tbody>
+                <tr><td>Mục đích</td><td>Tôi muốn cuộc trò chuyện này phục vụ điều gì?</td></tr>
+                <tr><td>Dữ kiện</td><td>Điều gì thật sự xảy ra, quan sát được, không phán xét?</td></tr>
+                <tr><td>Tác động</td><td>Việc này ảnh hưởng tới ai, tới kết quả nào?</td></tr>
+                <tr><td>Phần của tôi</td><td>Tôi có góp phần gì vào tình huống này không?</td></tr>
+                <tr><td>Lời mời</td><td>Tôi sẽ mở ra đối thoại bằng câu hỏi nào?</td></tr>
+                <tr><td>Cam kết</td><td>Sau cuộc nói chuyện cần có hành động cụ thể nào?</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h2>Thực hành 1: Viết kịch bản 6 câu</h2>
+          <div class="practice-box">
+            <p>Học viên viết kịch bản gồm: lời mở đầu an toàn, dữ kiện, tác động, cảm nhận/điều quan trọng, câu hỏi lắng nghe, đề nghị cam kết. Sau đó rút gọn để câu nói tự nhiên hơn.</p>
+          </div>
+          <h2>Thực hành 2: Role-play 3 vòng</h2>
+          <ol>
+            <li>Vòng 1: nói theo kịch bản, chưa xử lý phản ứng khó.</li>
+            <li>Vòng 2: người đối diện phòng vệ, im lặng hoặc phản công.</li>
+            <li>Vòng 3: người nói luyện quay về bình an và làm rõ cam kết.</li>
+          </ol>
+          <h2>Câu neo khi đối thoại căng</h2>
+          <ul>
+            <li>Tôi muốn hiểu phần của bạn trước khi mình cùng tìm hướng xử lý.</li>
+            <li>Tôi nghe là điều này khiến bạn thấy không được ghi nhận. Mình cùng quay lại dữ kiện nhé.</li>
+            <li>Tôi không muốn đổ lỗi. Tôi muốn chúng ta rõ trách nhiệm và bước tiếp theo.</li>
+            <li>Mình tạm dừng 1 phút để cả hai nói tiếp trong trạng thái tốt hơn.</li>
+          </ul>
+          <h2>Đầu ra cuối buổi</h2>
+          <ul>
+            <li>Một kịch bản đối thoại khó đã được luyện.</li>
+            <li>Một câu neo để quay về kết nối khi cuộc nói chuyện căng.</li>
+            <li>Một cam kết thực hiện cuộc hội thoại thật trước buổi offline.</li>
+          </ul>
+        </section>
+
+        <section class="article" data-category="overview" data-title="Buổi 9 offline. Tích hợp lãnh đạo trong bình an" data-format="Offline">
+          <h1>Buổi 9 offline. Tích hợp lãnh đạo trong bình an</h1>
+          <h2>Mục tiêu buổi offline</h2>
+          <p>Buổi offline là không gian tích hợp toàn bộ hành trình: học viên nhìn lại mình, thực hành hiện diện, đối thoại trực tiếp, nhận phản chiếu và viết cam kết lãnh đạo trong 30 ngày tiếp theo.</p>
+          <h2>Không khí thiết kế</h2>
+          <ul>
+            <li>Không gian đủ yên, có ánh sáng tự nhiên, có chỗ làm việc cá nhân và nhóm nhỏ.</li>
+            <li>Nhịp buổi có khoảng lặng, vận động nhẹ, đối thoại nhóm và cam kết hành động.</li>
+            <li>Ưu tiên sự thật, an toàn tâm lý và tính ứng dụng hơn các hoạt động tạo cảm xúc ngắn hạn.</li>
+          </ul>
+          <h2>Lịch trình gợi ý 1 ngày</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Thời gian</th><th>Hoạt động</th><th>Đầu ra</th></tr></thead>
+              <tbody>
+                <tr><td>09:00-09:30</td><td>Check-in và thiết lập không gian</td><td>Trạng thái có mặt, nguyên tắc an toàn.</td></tr>
+                <tr><td>09:30-10:30</td><td>Đi bộ phản tư hoặc quan sát tĩnh</td><td>3 điều tôi nhận ra về cách mình lãnh đạo.</td></tr>
+                <tr><td>10:45-12:00</td><td>Vòng chia sẻ bản đồ bên trong</td><td>Nhận phản chiếu từ nhóm.</td></tr>
+                <tr><td>13:30-14:45</td><td>Thực hành đối thoại trực tiếp</td><td>Một cuộc nói thật trong an toàn.</td></tr>
+                <tr><td>15:00-16:00</td><td>Thiết kế bản tuyên ngôn lãnh đạo</td><td>Nguyên tắc, ranh giới, cam kết 30 ngày.</td></tr>
+                <tr><td>16:00-17:00</td><td>Vòng cam kết và kết khóa</td><td>Cam kết công khai và buddy đồng hành.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h2>Bản tuyên ngôn lãnh đạo trong bình an</h2>
+          <div class="practice-box">
+            <p>Học viên hoàn thành 7 câu: Tôi lãnh đạo để..., Tôi muốn bảo vệ..., Khi bị kích hoạt tôi thường..., Lựa chọn mới của tôi là..., Ranh giới tôi cần giữ là..., Cách tôi muốn giao tiếp là..., Trong 30 ngày tới tôi cam kết...</p>
+          </div>
+          <h2>Kế hoạch 30 ngày sau khóa</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Tuần</th><th>Trọng tâm</th><th>Hành động</th><th>Bằng chứng hoàn thành</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Tự nhận thức</td><td>Ghi nhật ký 5 ngày và quan sát một mô thức.</td><td>5 dòng nhật ký, 1 insight.</td></tr>
+                <tr><td>2</td><td>Cảm xúc</td><td>Dùng quy trình 90 giây trong một tình huống căng.</td><td>Ghi lại trước, trong, sau.</td></tr>
+                <tr><td>3</td><td>Nội lực</td><td>Duy trì ritual 10 phút và nói một ranh giới.</td><td>5 ngày thực hành, 1 câu ranh giới đã nói.</td></tr>
+                <tr><td>4</td><td>Kết nối</td><td>Thực hiện một cuộc đối thoại khó.</td><td>Kịch bản, kết quả, điều học được.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="article" data-category="overview" data-title="Phụ lục: Mẫu biểu và câu hỏi phản tư" data-format="Phụ lục">
+          <h1>Phụ lục: Mẫu biểu và câu hỏi phản tư</h1>
+          <h2>Mẫu nhật ký lãnh đạo bình an</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Ngày</th><th>Sự kiện</th><th>Cảm xúc</th><th>Diễn giải</th><th>Nhu cầu</th><th>Lựa chọn mới</th></tr></thead>
+              <tbody>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h2>Bộ câu hỏi phản tư</h2>
+          <ul>
+            <li>Điều gì trong tôi được kích hoạt trong tình huống này?</li>
+            <li>Sự kiện thật là gì, câu chuyện tôi kể thêm là gì?</li>
+            <li>Tôi đang cố bảo vệ điều gì?</li>
+            <li>Nếu tôi lãnh đạo từ bình an, câu nói hoặc hành động tiếp theo sẽ là gì?</li>
+            <li>Điều gì cần được nói rõ nhưng vẫn có thể nói bằng sự tôn trọng?</li>
+            <li>Tôi đang ôm trách nhiệm của mình hay của người khác?</li>
+            <li>Tôi cần hồi phục điều gì trước khi ra quyết định?</li>
+          </ul>
+          <h2>Rubric tổng kết</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Tiêu chí</th><th>Đạt</th><th>Tốt</th><th>Xuất sắc</th></tr></thead>
+              <tbody>
+                <tr><td>Tự nhận thức</td><td>Nêu được mô thức cá nhân.</td><td>Liên hệ được với hành vi thật.</td><td>Biết nhận trách nhiệm và chọn thử nghiệm mới.</td></tr>
+                <tr><td>Cảm xúc</td><td>Gọi tên được cảm xúc.</td><td>Tách được sự kiện và diễn giải.</td><td>Điều tiết được trong tình huống thật.</td></tr>
+                <tr><td>Nội lực</td><td>Có ritual cá nhân.</td><td>Duy trì được trong tuần.</td><td>Biết đặt ranh giới và hồi phục có ý thức.</td></tr>
+                <tr><td>Giao tiếp</td><td>Viết được kịch bản phản hồi.</td><td>Thực hành nói rõ, tôn trọng.</td><td>Dẫn dắt được đối thoại khó thành cam kết.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </article>
+    </section>
+
+    <aside class="toc panel">
+      <div class="toc-head">
+        <p class="eyeline">Mục lục bài</p>
+        <h2 class="panel-title" id="tocTitle">Bản đồ chương trình</h2>
+      </div>
+      <nav class="toc-list" id="tocList"></nav>
+    </aside>
+  </main>
+
+  <script>
+    const labels = {
+      overview: 'Tổng quan',
+      self: 'Lãnh đạo bắt đầu từ việc thấu hiểu chính mình',
+      emotion: 'Làm chủ cảm xúc',
+      peace: 'Nội lực bình an trong lãnh đạo',
+      connect: 'Giao tiếp tạo kết nối'
+    };
+
+    const storageKey = 'lanh-dao-trong-binh-an-state-v1';
+    const articles = [...document.querySelectorAll('.article')];
+    const els = {
+      tabs: [...document.querySelectorAll('.tab-button')],
+      search: document.getElementById('searchInput'),
+      clearSearch: document.getElementById('clearSearch'),
+      lessonList: document.getElementById('lessonList'),
+      lessonSelect: document.getElementById('lessonSelect'),
+      sidebarTitle: document.getElementById('sidebarTitle'),
+      lessonCount: document.getElementById('lessonCount'),
+      crumb: document.getElementById('crumb'),
+      tocTitle: document.getElementById('tocTitle'),
+      tocList: document.getElementById('tocList'),
+      formatTag: document.getElementById('formatTag')
+    };
+
+    const lessons = articles.map((article, index) => {
+      const id = article.id || `lesson-${index + 1}`;
+      article.id = id;
+      article.querySelectorAll('h1, h2, h3').forEach((heading, headingIndex) => {
+        if (!heading.id) heading.id = `${id}-h${headingIndex + 1}`;
+      });
+      return {
+        id,
+        order: index + 1,
+        category: article.dataset.category,
+        title: article.dataset.title,
+        format: article.dataset.format,
+        text: article.textContent
+      };
+    });
+
+    let state = readState();
+
+    function readState() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+        return { category: saved.category || 'overview', lessonId: saved.lessonId || null, query: '' };
+      } catch {
+        return { category: 'overview', lessonId: null, query: '' };
+      }
+    }
+
+    function writeState() {
+      localStorage.setItem(storageKey, JSON.stringify({ category: state.category, lessonId: state.lessonId }));
+    }
+
+    function normalize(value) {
+      return String(value).toLocaleLowerCase('vi').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+
+    function categoryLessons(category = state.category) {
+      return lessons.filter(lesson => lesson.category === category);
+    }
+
+    function filteredLessons() {
+      const query = normalize(state.query.trim());
+      const base = categoryLessons();
+      if (!query) return base;
+      return base.filter(lesson => normalize(`${lesson.title} ${lesson.format} ${lesson.text}`).includes(query));
+    }
+
+    function activeLesson() {
+      const available = categoryLessons();
+      return available.find(lesson => lesson.id === state.lessonId) || available[0] || lessons[0];
+    }
+
+    function selectCategory(category) {
+      state.category = category;
+      state.lessonId = categoryLessons(category)[0]?.id || lessons[0].id;
+      writeState();
+      render();
+    }
+
+    function selectLesson(lessonId, pushTop = true) {
+      state.lessonId = lessonId;
+      const lesson = lessons.find(item => item.id === lessonId);
+      if (lesson) state.category = lesson.category;
+      writeState();
+      render();
+      if (pushTop) window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderLessonList() {
+      const available = filteredLessons();
+      els.lessonList.innerHTML = available.length ? available.map(lesson => `
+        <button class="lesson-button ${lesson.id === state.lessonId ? 'is-active' : ''}" type="button" data-lesson="${lesson.id}">
+          <span class="lesson-number">${String(lesson.order).padStart(2, '0')}</span>
+          <span>
+            <span class="lesson-name">${lesson.title}</span>
+            <span class="lesson-meta">${lesson.format}</span>
+          </span>
+        </button>`).join('') : '<div class="empty-state">Không tìm thấy bài phù hợp.</div>';
+
+      els.lessonSelect.innerHTML = categoryLessons().map(lesson => `
+        <option value="${lesson.id}" ${lesson.id === state.lessonId ? 'selected' : ''}>${String(lesson.order).padStart(2, '0')} · ${lesson.title}</option>`).join('');
+    }
+
+    function renderToc(article, lesson) {
+      const headings = [...article.querySelectorAll('h1, h2, h3')];
+      els.tocTitle.textContent = lesson.title;
+      els.tocList.innerHTML = headings.map(heading => `
+        <a class="toc-link level-${heading.tagName.slice(1)}" href="#${heading.id}">${heading.textContent}</a>`).join('');
+    }
+
+    function render() {
+      const all = categoryLessons();
+      if (!state.lessonId || !all.some(lesson => lesson.id === state.lessonId)) {
+        state.lessonId = all[0]?.id || lessons[0].id;
+      }
+      const lesson = activeLesson();
+      const article = document.getElementById(lesson.id);
+
+      els.tabs.forEach(tab => tab.setAttribute('aria-selected', String(tab.dataset.category === state.category)));
+      els.sidebarTitle.textContent = labels[state.category];
+      els.lessonCount.textContent = `${categoryLessons().length} bài`;
+      els.clearSearch.classList.toggle('is-visible', Boolean(state.query));
+      els.crumb.textContent = `${labels[lesson.category]} · ${lesson.title}`;
+      els.formatTag.textContent = lesson.format;
+      articles.forEach(item => item.classList.toggle('is-active', item.id === lesson.id));
+      renderLessonList();
+      renderToc(article, lesson);
+    }
+
+    els.tabs.forEach(tab => tab.addEventListener('click', () => selectCategory(tab.dataset.category)));
+    els.lessonList.addEventListener('click', event => {
+      const button = event.target.closest('[data-lesson]');
+      if (button) selectLesson(button.dataset.lesson);
+    });
+    els.lessonSelect.addEventListener('change', event => selectLesson(event.target.value));
+    els.search.addEventListener('input', event => {
+      state.query = event.target.value;
+      renderLessonList();
+      els.clearSearch.classList.toggle('is-visible', Boolean(state.query));
+    });
+    els.clearSearch.addEventListener('click', () => {
+      state.query = '';
+      els.search.value = '';
+      renderLessonList();
+      els.clearSearch.classList.remove('is-visible');
+      els.search.focus();
+    });
+    els.tocList.addEventListener('click', event => {
+      const link = event.target.closest('a[href^="#"]');
+      if (!link) return;
+      event.preventDefault();
+      document.querySelector(link.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      history.replaceState(null, '', link.getAttribute('href'));
+    });
+
+    render();
+  </script>
+</body>
+</html>
